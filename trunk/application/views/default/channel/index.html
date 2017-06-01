@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{{$web_name}}</title>
+		{{include file='../common/importAll.html'}}
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/un-index.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/index_1.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/zx.css" />
+		<script type="text/javascript" src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/js/hdslide.js" ></script>
+		<link href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/css/list_article.css?v={{config_item('system_version')}}" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		{{include file='../common/header.html'}}
+		<div class="clear"></div>
+		<div id="content">
+			<span class="man_baoxie">当前位置：<a href="{{formatUrl('home')}}">汽车首页</a> &gt; <a href="{{formatUrl('home')}}channel">汽车资讯</a></span>
+
+			<div class="c_left">
+				<div class="zx-div border-5 sg-w-9">
+					<h3 class="sg-disp bg-1 sg-p-2 ">汽车资讯</h3>
+				{{if !empty($list)}}
+					{{foreach $list.list as $v}}
+					<a href="{{formatUrl('article', 'article', $v.id)}}">
+						<img  src="{{$v.thumb}}"/>
+						<div>
+							<dd>{{$v.title}}</dd>
+							<p>{{cut_str($v.content, 100)}}...</p>
+							<dt>发布于：{{date('Y-n-d',$v.addtime)}}</dt>
+						</div>
+					</a>
+					{{/foreach}}
+				{{/if}}
+
+
+				</div>
+				<div class="c_page">
+					{{$list.pages}}
+				</div>
+			</div>
+
+			<div class="c_right">
+				<div class="fr  recommend-div ">
+
+					<!--二手车推荐-->
+					<div class="recommend-cont sg-m-3 bg-1">
+						<h3>二手车推荐</h3>
+						{{if $index_er_sou.rows}}
+						{{foreach $index_er_sou.rows as $k=>$v}}
+						{{$v.url}}
+						{{/foreach}}
+						{{/if}}
+					</div>
+				</div>
+				</div>
+
+			</div>
+		</div>
+		{{include file='../common/footer.html'}}
+		<div style="display: none;">
+			{{config_item('cnzz')}}
+		</div>
+	</body>
+
+</html>

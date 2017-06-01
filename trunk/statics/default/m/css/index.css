@@ -1,0 +1,101 @@
+
+/**导航**/
+#nav-box a{display: inline-block;width:32%;border-left: 1px solid #f1f1f1; text-align: center;padding: 1rem 0;color: #666;}
+#nav-box a:first-child{border: 0;}
+#nav-box a span{font-size: 1.0rem; display: block; margin-bottom: 0.5rem;}
+#nav-box a span i{color: #fff;padding: 0.04rem 0.3rem;margin-right: 0.3rem;font-size: 0.9rem;border-radius:0.4rem;-webkit-border-radius:0.4rem;-moz-border-radius: 0.4rem;}
+#nav-box a:nth-child(1) span{color:#3fd7fe;}
+#nav-box a:nth-child(2) span{color:#f85151;}
+#nav-box a:nth-child(3) span{color:#fc8158;}
+#nav-box a:nth-child(1) i{background:#3fd7fe ;}
+#nav-box a:nth-child(2) i{background:#f85151 ;}
+#nav-box a:nth-child(3) i{background:#fc8158 ;}
+
+/**主体**/
+.text-dl-1{padding: 0.5rem 0;line-height: 1.5rem;}
+.text-dl-1 dd{font-size: 0.9rem;}
+.text-dl-1 dt{color: #666;font-size: 0.8rem;}
+.text-dl-1 dt.wap-red{color: #f75151;}
+.text-dl-1 i{font-size: 1.0rem;color: #f75151;}
+.text-dl-1 a{color: #333;}
+@media screen and (min-width:650px){
+	.text-dl-1 dd{font-size: 1.2rem;}
+	.text-dl-1 dt{color: #666;font-size: 1.0rem;}
+	.text-dl-1 i{position: absolute;right:1%;bottom: 1.5rem;font-size: 1.2rem;}
+	
+}
+.more{display: block; text-align: center;font-size: 0.9rem;padding: 0rem 0.9rem 0.9rem 0.9rem;color: #333;}
+.more2{display: block; text-align: center;font-size: 0.9rem;padding: 0.9rem 0.9rem 0.9rem 0.9rem;color: #333;}
+
+
+#fixed-divbox{position: fixed; width: 100%;height: 16.0rem;z-index: 9999;bottom: 0;border-top: 2px solid #f85151;}
+.fixed-bg{width: 100%; background: #fff; height:100%;position: absolute;z-index: 1;}
+.hotnav{position: relative;z-index: 9;border-bottom: 1px dashed #F1F1F1;padding: 0.5rem;background: #fdfbfb;}
+.fixed-nav{position: relative;z-index: 2;padding: 1.0rem;width: 13.5rem;margin: 0px auto; }
+.fixed-nav a{float: left;margin-right: 1.0rem;text-align: center;color: #333;}
+.fixed-nav a i{width: 3.5rem;height:3.5rem;border-radius:5.5rem ;display: block;margin-bottom: 0.5rem;}
+.fixed-nav a:nth-child(1) i{background: url(../images/homeico.png) no-repeat  center #34bacd;}
+.fixed-nav a:nth-child(2) i{background: url(../images/storeico.png) no-repeat  center #44b5df;}
+.fixed-nav a:nth-child(3) i{background:url(../images/carico.png) no-repeat  center #f86f75;}
+
+/**商家推荐列表**/
+#listheader{text-align: center;color: #fff;padding: 0.5rem;}
+#listheader1{text-align: center;color: #fff;padding: 0.5rem;}
+.list-top-a1{position: absolute;right: 1.0rem;top: 0.5rem;}
+.list-top-a2{position: absolute;left: 1.0rem;top: 0.5rem;}
+.navlist1 h3{display: block;padding:1.0rem 0.5rem;}
+.listnav{display: block;}
+.listnav li{display: inline-block;padding: 0.5rem;border: 1px solid #f1f1f1;border-radius: 0.5rem;margin: 0 0.2rem 0.5rem 0;}
+.listnav li.blue{ background: #37affb;color: #fff;border: 1px solid #37affb;}
+.listnav li.blue a{color: #fff;}
+.listnav li a{color: #333;}
+
+/***内容***/
+.numbox{position: absolute;width: 4.5rem; color: #fff;z-index: 9;bottom: 0.5rem;font-size: 1.0rem;left: 0.5rem;}
+.numbox .numbg{ background: #000;width: 100%;height: 2.0rem; position: absolute;left: 0;bottom: 0px;opacity: 0.5;border-radius: 0.2rem;}
+.numbox div.picico{bottom: 5px; background: url(../images/picico.png) no-repeat 0.3rem 0.2rem;padding-left: 0.5rem;width: 4.5rem;}
+.contentlist h3{display: block;border-bottom: 1px solid #f1f1f1;font-size: 1.0rem;color: #333;padding: 1.1rem;}
+.content-ul li{border-bottom: 1px solid #f1f1f1;padding: 1.0rem;font-size: 0.8rem;color: #666;}
+.content-ul li i{color: #f75151;float: right;}
+.content-ul li:first-child i{font-size: 1.2rem;}
+.carinfo aside{display: table-cell;padding: 0.5rem; text-align: center;font-size: 1.0rem;}
+.carinfo aside:nth-child(1){width: 8.0rem;}
+.carinfo aside:nth-child(2){width: 4.0rem;}
+.carinfo aside:nth-child(3){width: 4.0rem;}
+
+.content-a {padding: 1.0rem;color: #333;border-bottom: 1px dashed #f1f1f1;}
+.content-a a{color: #333;}
+.content-a a dt{display: block;width: 100%;font-size: 1.0rem;}
+.content-a a dd{display:inline-block;padding:2% 1.5% 0 0;font-size: 0.8rem;}
+.content-a a dd em{text-decoration: line-through;}
+.content-a a dd:nth-child(3){color: #f75151;}
+.content-a a i{position: absolute;right: 3%;bottom: 30%;font-size: 1.0rem;color: #f75151;}
+
+#infordiv{ transition: height 1s; height: 14.5rem; overflow: hidden;}
+#lookmore{display: block;text-align: center;width:100%;background: #fff;}
+
+.contentpicbox{padding:0 1.0rem 1.0rem;font-size: 0.9rem;line-height: 1.5rem;color: #666;}
+.contentpicbox img{display: block;width: 100%;margin-bottom: 0.8rem;}
+.but-2{padding: 0.8rem 0;text-align: center;bottom: 0;width: 100%;color: #fff;border: 0;font-size: 1.0rem;}
+
+/*表单提交*/
+#frombox form{width: 100%;max-width: 650px; margin: 0px auto;}
+#frombox form h3{text-align: center;font-size: 1.0rem;color: #333;}
+#frombox form span{font-size: 1.0rem;color: #333;margin-top:0.5rem;display: block;padding: 0.5rem;}
+#frombox form ul li label{display: block;position: relative;margin-bottom: 1.0rem;}
+#frombox form ul li .input1{border: 1px solid #ccc;height: 2.0rem;padding-left: 2.5rem;width: 83%;}
+#frombox form ul li dd{ color: #333;line-height:1.5rem; display: none;}
+#frombox form ul li .dd2{ color: #333;  display: none;}
+#frombox form ul li .dd3{color: #37affb; display: block;}
+#frombox form ul li .dd4{color: #37affb; display: block;}
+
+#frombox form ul li label em{position: absolute;bottom: 0.5rem;right: 10%;color: #666;}
+#frombox form ul li label button{width: 96%; background: #37affb;border: 0;color: #fff;font-size: 1.0rem;padding: 0.5rem 0;}
+
+@media  screen and (min-width:640px) {
+	#frombox form ul li label em{position: absolute;bottom: 0.5rem;right: 15%;color: #666;}
+	#frombox form ul li label button{width: 90%; background: #37affb;border: 0;color: #fff;font-size: 1.0rem;padding-left: 2.5rem;}
+}
+#frombox form label input.ico1 {background: url(../images/userico.png) no-repeat 0.7rem 0.4rem;}
+#frombox form label input.ico2 {background: url(../images/telico.png) no-repeat 0.7rem 0.4rem;}
+#frombox form label input.ico3 {background: url(../images/moneyico.png) no-repeat 0.7rem 0.4rem;}

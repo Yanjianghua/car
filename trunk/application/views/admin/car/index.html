@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		{{include file='../../common/importAll.html'}}
+		<script type="text/javascript" src="/statics/js/lib/my97date/WdatePicker.js"></script>
+		<script type="text/javascript" src="/statics/js/lib/ckeditor/ckeditor.js"></script>
+		<script src="/statics/admin/js/car/data_table_body.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/statics/admin/js/car/ad.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			function FindData() {
+				$('#data_table_body').datagrid('load', {
+					store: $('#store').val(),
+					carname: $('#carname').val(),
+					brand: $("#brand").val(),
+					grade: $("#grade").val(),
+					status: 1
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="window"></div>
+		<div class="main">
+			<div>
+				<label>
+					<input class="easyui-searchbox" id="store" style="width:100px" data-options="prompt:'请输入店名'" /> 店名：
+					<input class="easyui-searchbox" id="carname" style="width:100px" data-options="prompt:'请输入车型名称'" /> 车型名称：
+					<select id="brand" name="brand">
+						<option value="">不限品牌</option>
+						{{foreach $brand as $k=>$v}}
+						<option value="{{$v.id}}">{{$v.name}}</option>
+						{{/foreach}}
+					</select>品牌
+					<select id="grade" name="grade">
+						<option value="">不限级别</option>
+						{{foreach $grade as $k=>$v}}
+						<option value="{{$v.id}}">{{$v.name}}</option>
+						{{/foreach}}
+					</select>级别
+					<a href="javascript:FindData()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+				</label>
+			</div>
+			<div id="data_table" style="float: left;">
+				<table id="data_table_body">
+
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

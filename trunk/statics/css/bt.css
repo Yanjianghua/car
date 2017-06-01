@@ -1,0 +1,39 @@
+#navbox span{display: block;width:290px;height: 45px; margin: 30px auto 0px auto;}
+#navbox span a{ display:block;background: #eee;padding:15px 40px; float: left;color: #333;}
+#navbox span a.select6 {color: #fff;background: #0792E8;}
+
+#listpicbox {margin-top: 60px;}
+#listpicbox ul li { border: 2px solid #ccc;height: 300px;margin-bottom: 20px; }
+#listpicbox ul li span{display: block; width: 530px;float: left;padding: 20px; position: relative;}
+#listpicbox ul li span h3{font-size: 24px;}
+#listpicbox ul li span a{color: #333;}
+#listpicbox ul li img{float: right;}
+#listpicbox ul li span i{display: block;height:70px;width:100%;top:70px;left: -5px; background: url(../images/bg-fontsize.png) no-repeat 0px -170px; position: absolute;z-index: 1;}
+#listpicbox ul li span label{padding: 40px 0; display: inline-block;z-index: 3;position: relative;color: #fff;}
+#listpicbox ul li span i button{border: 0; background: #f62961;padding: 10px;color: #fff; position: absolute;right: 90px;top:10px;font-size: 16px;font-family: "微软雅黑";border-radius: 5px;}
+#listpicbox ul li span dd{display: block; padding-top: 8px; padding-left: 30px;color: #666;font-size: 16px;}
+#listpicbox ul li span dd em{padding: 0 20px;color: #d4122a;}
+#listpicbox ul li span dt{display: block; padding-top:25px; color: #666;font-size: 16px;}
+#listpicbox ul li span b{background: url(../images/icon-1.png) no-repeat 0px -645px; display: inline-block;padding: 20px 0px 0px 30px;font-size: 20px;}
+#listpicbox ul li:hover{border: 2px solid #0792E8;transition: border  0.5s ease-in;   -webkit-transition:all 0.5s ease-in;-moz-transition: all 0.5s ease-in;}
+.c_page {
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    width: 900px;
+    margin: 40px 0 30px 0;
+}
+.c_page .pagelist {
+    margin: 0 auto;
+}
+.pagelist a {
+    margin-right: 5px;
+    margin-top: 1px;
+    display: inline;
+    padding: 4px 8px 5px 8px;
+    text-align: center;
+    color: #333333;
+    line-height: 32px;
+    height: 32px;
+    border: 1px solid gray;
+}

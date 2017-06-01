@@ -1,0 +1,80 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<input type="hidden" name="id" value="{{$id}}" />
+	<div>
+		<label>位&nbsp;&nbsp;&nbsp;置:</label>
+		<input id="wz" name="wz" value="{{$re.wz}}" />
+	</div>
+	<div>
+		<label>标&nbsp;&nbsp;&nbsp;题:</label>
+		<input id="title11" name="title" value="{{$re.title}}" />
+	</div>
+	<div>
+		<label>链&nbsp;&nbsp;&nbsp;接:</label>
+		<input id="url" name="url" value="{{$re.url}}" />
+	</div>
+	<div>
+		<label>图&nbsp;&nbsp;&nbsp;片:</label>
+		<input id="t1" name="t1" value="" />
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script type="text/javascript">
+	function adAdd(check, button) {
+		$('#form').form({
+			url: "/Admin_Recommand/edit/",
+			onSubmit: function() {
+				if(check() === false){
+					return false;
+				}
+				$("#window").mask();
+				return true;
+			},
+			success: function(data) {
+				data = JSON.parse(data);
+				if (!data.success) {
+					alert(data.msg);
+				} else {
+					$("#data_table_body").datagrid("reload");
+					$("#window").window("close");
+				}
+				$("#window").unmask();
+			}
+		});
+		button();
+	}
+	adAdd(function() {
+		var username = $.trim($("#title11").val());
+		if (username == "") {
+			alert("标题不能为空");
+			return false;
+		}
+	}, function() {
+		$("#wz").textbox({
+			width: "30%",
+			prompt: "请输入位置",
+			type: "text"
+		});
+		$("#title11").textbox({
+			width: "30%",
+			prompt: "请输入标题",
+			type: "text"
+		});
+		$("#url").textbox({
+			width: "30%",
+			prompt: "请输入链接地址",
+			type: "text"
+		});
+		$("#t1").filebox({
+			width: "50%",
+			prompt: "请输入图片",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>

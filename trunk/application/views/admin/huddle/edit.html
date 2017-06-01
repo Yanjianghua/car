@@ -1,0 +1,122 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<input type="hidden" name="id" value="{{$id}}" />
+	<div>
+		<label>车&nbsp;&nbsp;&nbsp;名:</label>
+		<input id="carname" name="bname" value="{{$huddle.bname}}" />
+	</div>
+	<div>
+		<label>抱团信息:</label>
+		<input id="bxx" name="bxx" value="{{$huddle.bxx}}" />
+	</div>
+	<div>
+		<label>抱团地址:</label>
+		<input id="baddress" name="baddress" value="{{$huddle.baddress}}" />
+	</div>
+	<div>
+		<label>开始时间:</label>
+		<input id="stime" name="stime" value="{{$huddle.stime}}" />
+	</div>
+	<div>
+		<label>结束时间:</label>
+		<input id="etime" name="etime" value="{{$huddle.etime}}" />
+	</div>
+	<!--<div>-->
+		<!--<label>抱团人数:</label>-->
+		<!--<input id="people" name="people" value="{{$huddle.people}}" />-->
+	<!--</div>-->
+	<div>
+		<label>右&nbsp;&nbsp;&nbsp;图:</label>
+		<input id="t1" name="t1" value="" />
+	</div>
+	<div>
+		<label>电&nbsp;&nbsp;&nbsp;话:</label>
+		<input id="telephone" name="telephone" value="{{$huddle.telephone}}" />
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script type="text/javascript">
+	function adAdd(check, button) {
+		$('#form').form({
+			url: "/Admin_Huddle/edit/",
+			onSubmit: function() {
+				if(check() === false){
+					return false;
+				}
+				$("#window").mask();
+				return true;
+			},
+			success: function(data) {
+				data = JSON.parse(data);
+				if (!data.success) {
+					alert(data.msg);
+				} else {
+					$("#data_table_body").datagrid("reload");
+					$("#window").window("close");
+				}
+				$("#window").unmask();
+			}
+		});
+		button();
+	}
+	adAdd(function() {
+		var truename = $.trim($("#truename").val());
+		var username = $.trim($("#username").val());
+		var password = $.trim($("#password").val());
+//		if (truename == "") {
+//			alert("优惠价格不能为空");
+//			return false;
+//		}
+//		if (username == "") {
+//			alert("店名不能为空");
+//			return false;
+//		}
+	}, function() {
+		$("#carname").textbox({
+			width: "40%",
+			prompt: "请输入车辆信息",
+			type: "text"
+		});
+		$("#bxx").textbox({
+			width: "60%",
+			prompt: "请输入车辆信息",
+			type: "text"
+		});
+		$("#baddress").textbox({
+			width: "60%",
+			prompt: "请输入地址",
+			type: "text"
+		});
+		$("#stime").textbox({
+			width: "30%",
+			prompt: "请输入开始时间",
+			type: "date"
+		});
+		$("#etime").textbox({
+			width: "30%",
+			prompt: "请输入结束时间",
+			type: "date"
+		});
+//		$("#people").textbox({
+//			width: "30%",
+//			prompt: "请输入修改人数",
+//			type: "date"
+//		});
+		$('#telephone').textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "text"
+		});
+		$('#t1').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是600 * 300的图片",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>

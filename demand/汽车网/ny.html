@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>车型内页</title>
+		<script  src="js/jquery-1.8.3.min.js"></script>
+		<link rel="stylesheet" href="css/un-index.css" />
+		<link rel="stylesheet" href="css/ny.css" />
+	</head>
+	<body>
+		<!--头部-->
+		<div id="heads">
+			<div class="sg-m-1 sg-w-1 ts-p-2">
+				<a href="#" title="韶关家园汽车频道" class="fl"><img src="images/logo.png" /> </a>				
+				<div class="search fl">
+					<!--搜索-->
+					<form name="myform1" method="get" id="myform1">
+						<input type="text" placeholder="请输入搜索关键词" value=""  />
+						<button type="submit" value="">搜 索</button>						
+					</form>
+					<div class="clear"></div>
+					
+					<span class="keyspan">
+						<a href="#">起亚</a>
+						<a href="#">大众</a>
+						<a href="#">一汽丰田</a>
+						<a href="#">奥迪</a>
+						<a href="#">北京现代</a>						
+					</span>					
+				</div>
+			<div class="clear"></div>	
+			</div>
+			<!--导航-->
+			<div id="nav-div" class="border-1">
+				<div class="sg-m-1 sg-w-1 ">
+					<div class="catenav fl">
+						<span>家园汽车</span>
+					</div>
+					<div class="nav fl">
+						<ul>						
+							<li><a href="index.html">汽车首页</a></li>
+							<li><a href="lm.html">特惠车型</a></li>
+							<li><a href="bt.html">报团看车</a></li>	
+							<li><a href="zx.html">汽车资讯</a></li>						
+						</ul>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>			
+		</div>
+		<!--头部结束-->
+		
+		<!--主体-->
+		<div id="min">
+			<!--广告图-->
+			<div id="banner-div">
+				<a href="#"><img src="images/focus3.jpg" /> </a>
+			</div>
+			
+			<div class="sg-m-3 sg-w-1">
+				<div class="topcont">
+					<dl>
+						<dt>北京现代韶关联现店</dt>
+						<dt>浏览次数<i>12342222</i></dt>
+						<dt>最近编辑<i>2016-07-12</i></dt>
+					</dl>
+					<span>0751-8638888</span>
+				</div>
+				
+				<div class="sg-m-3">
+					<!--组图-->
+					<div id="slidepic" class="fl">
+						<div id="bigpicbox">
+							<ul>
+							    <li style="display: block;"><img src="images/cont01.jpg" /> </li>
+							    <li style="display: none;"><img src="images/cont02.jpg" /> </li>
+							    <li style="display: none;"><img src="images/cont03.jpg" /> </li>
+							    <li style="display: none;"><img src="images/cont02.jpg" /> </li>
+						    </ul>
+						</div>
+						
+						<div id="spicbox" class="spicbox" >
+						    <ul>
+						    	<li class="select5"><img src="images/contm3.jpg" /> </li>
+							    <li><img src="images/contm1.jpg" /> </li>
+							    <li><img src="images/contm2.jpg" /> </li>
+							    <li><img src="images/contm1.jpg" /> </li>
+							    
+						    </ul>
+					    </div>
+					</div>
+					<div class="fl cont-div">
+						<h3 id="h3-title">现代 瑞纳 2014款 1.4L 手动 智能型</h3>
+						<label><i>特惠价</i><b>5.68万</b> </label>
+						<label><i>优惠信息</i><em>优惠8000并送真皮座椅</em> </label>
+						<label><i>特惠时间</i>2016年6月23日~2016年7月15日</label>
+						<span>
+							<dd>[我要看车]抱团看车活动,优惠信息免费通知我</dd>
+							<dd>参与人数:<em>65</em></dd>
+							<button type="button" value="" id="nybut">立即申请</button>
+						</span>
+						<label><i>商家地址</i>韶关浈江区南郊6公里XX旁</label>
+						<dl>
+							<dt>0751-8638888</dt>
+							<dd>免费资讯电话</dd>
+						</dl>
+					</div>					
+					<div class="clear"></div>
+				</div>
+				
+				<script type="text/javascript">
+				    
+				    var bDiv=document.getElementById("bigpicbox");
+					var bLi=bDiv.getElementsByTagName("li");
+					
+					var sDiv=document.getElementById("spicbox");
+					var sLi=sDiv.getElementsByTagName("li");
+					
+				    for (var i=0;i<sLi.length;i++) {
+				    	sLi[i].index=i;
+				    	
+				    	sLi[i].onmouseenter=function(){
+				    		 for (var m=0;m<sLi.length;m++) {				    		 	
+				    		 	sLi[m].className="";				    		 	
+				    		 	bLi[m].style.display="none";
+				    		 }			    		
+				    		this.className="select5";
+				    		bLi[this.index].style.display="block";
+				    	}
+				    	
+				    }
+					
+					
+				</script>
+				
+				
+				<div class="content-div">
+					<h3>现代瑞纳2014款价格表</h3>
+					<table cellpadding="0" cellspacing="0" id="table-box">
+						<tr>
+							<td width="350">车型</td>
+							<td width="180">厂家指导价/万</td>
+							<td width="180">优惠价格/万</td>
+							<td width="180">裸车价格/万</td>
+							<td width="180">参考总价/万</td>
+							<td width="180">操作状态</td>
+						</tr>
+						<tr>
+							<td><span>瑞纳 2014款 1.6L 自动领先型GLX</span></td>
+							<td>9.99</td>
+							<td>1.80</td>
+							<td>8.19</td>
+							<td class="color-1">9.58</td>
+							<td><button type="button" value="">免费预约</button></td>
+						</tr>
+						<tr>
+							<td><span>瑞纳 2014款 1.6L 自动顶级型TOP</span></td>
+							<td>10.69</td>
+							<td>1.80</td>
+							<td>8.89</td>
+							<td class="color-1">10.36</td>
+							<td><button type="button" value="">免费预约</button></td>
+						</tr>
+						<tr>
+							<td><span>瑞纳 2014款 1.4L 自动领先型GLX</span></td>
+							<td>9.29</td>
+							<td>1.80</td>
+							<td>7.49</td>
+							<td class="color-1">8.81</td>
+							<td><button type="button" value="">免费预约</button></td>
+						</tr>
+						<tr>
+							<td><span>瑞纳 2014款 1.4L 自动顶级型TOP</span></td>
+							<td>10.29</td>
+							<td>1.80</td>
+							<td>8.49</td>
+							<td class="color-1">9.91</td>
+							<td><button type="button" value="">免费预约</button></td>
+						</tr>
+						<tr>
+							<td><span>瑞纳 2014款 1.4L 自动智能型GLS</span></td>
+							<td>8.69</td>
+							<td>1.80</td>
+							<td>6.89/万</td>
+							<td class="color-1">8.14</td>
+							<td><button type="button" value="">免费预约</button></td>
+						</tr>
+						<tr>
+							<td><span>瑞纳 2014款 1.4L 自动时尚型GS</span></td>
+							<td>8.19</td>
+							<td>1.80</td>
+							<td>6.39</td>
+							<td class="color-1">7.59</td>
+							<td><button type="button" value="">免费预约</button></td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="content-div">
+					<h3>车辆实拍图</h3>
+					<div class="imgbox">
+						<p><img src="images/img1.jpg" /></p>
+						<p><img src="images/img2.jpg" /></p>
+						<p><img src="images/img3.jpg" /></p>						
+					</div>
+				</div>
+				
+				<div class="content-div">
+					<h3>商家指引地图</h3>
+					<div class="map-div ts-m-2">
+							<div style="width:1184px;height:545px;border:#ccc solid 1px;" id="dituContent"></div>					
+					</div>
+				</div>
+				<style>
+					.iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+					.iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+				</style>
+				<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+				<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(113.605467,24.783251);//定义一个中心点坐标
+        map.centerAndZoom(point,13);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_SMALL});
+	map.addControl(ctrl_nav);
+                //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+	map.addControl(ctrl_sca);
+    }
+    
+    //标注点数组
+    var markerArr = [{title:"北京现代联现店",content:"我的备注",point:"113.586818|24.73971",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+		 ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+			var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+			var iw = createInfoWindow(i);
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+            });
+			
+			(function(){
+				var index = i;
+				var _iw = createInfoWindow(i);
+				var _marker = marker;
+				_marker.addEventListener("click",function(){
+				    this.openInfoWindow(_iw);
+			    });
+			    _iw.addEventListener("open",function(){
+				    _marker.getLabel().hide();
+			    })
+			    _iw.addEventListener("close",function(){
+				    _marker.getLabel().show();
+			    })
+				label.addEventListener("click",function(){
+				    _marker.openInfoWindow(_iw);
+			    })
+				if(!!json.isOpen){
+					label.hide();
+					_marker.openInfoWindow(_iw);
+				}
+			})()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+    
+    initMap();//创建和初始化地图
+</script>
+			</div>
+		</div>
+		
+		<div id="fromshow" class="shown" >
+			<div class="formbg"></div>
+			<div class="formdiv">
+				<form method="post" id="myform2">
+					<h3 id="fromh3">现代瑞纳2014款全系优惠8000</h3>
+					<p>√参与活动折扣优惠 √额外礼包 √专属顾问提供购车指导</p>
+					<label> <input type="text" name="username" value="" id="user1" placeholder="姓名" class="input1 bs-ico9" /><dd>请输入用户名</dd> </label>
+					<label> <input type="text" name="telnum" value="" id="user2" placeholder="手机号" class="input1 bs-ico10" /><dd>请输入手机号</dd> </label>
+					<label> <input type="checkbox" checked="ture"/>我已阅读并同意<a href="#">《汽车交易条款》</a></label>
+					<label><button type="button" value="" class="but1">立即提交</button></label>
+					<span class="closefrom"></span>
+				</form>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/from1.js" ></script>
+		<script type="text/javascript">
+			var NyBut=document.getElementById("nybut");
+			var H3Title=document.getElementById("h3-title");
+			
+			var FromShow=document.getElementById("fromshow");			
+			var FromH3=document.getElementById("fromh3");
+			
+			var tBalebox=document.getElementById("table-box");
+			var tButtom=tBalebox.getElementsByTagName("button");
+			var tTdSpan=tBalebox.getElementsByTagName("span");
+			
+			for (var j=0;j<tButtom.length;j++) {
+				tButtom[j].val=j;
+				tButtom[j].onclick=function(){
+					FromShow.style.display="block";
+					FromH3.innerHTML=tTdSpan[this.val].innerText;
+				}
+				
+			}
+			
+			   NyBut.onclick=function(){
+			   	FromShow.style.display="block";
+			   	FromH3.innerHTML=H3Title.innerText;
+			   }
+		</script>
+		
+		
+		<!--底部-->
+		<div id="footer" class="border-2 bg-1">
+			<div class="sg-w-1 bottom">
+				<a href="#">关于我们 </a>
+				<a href="#">广告报价</a>
+				<a href="#">招聘信息 </a>
+				<a href="#">服务条款 </a>
+				<a href="#">保护隐私权</a>
+				<a href="#">免责条款</a>
+				<a href="#">联系我们</a>
+				<p>Copyright © sg169.com All Rights Reserved. 韶关家园 版权所有</p>
+			</div>
+		</div>
+		
+		
+	</body>
+</html>

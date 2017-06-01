@@ -1,0 +1,39 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<div>
+		<label>类&nbsp;&nbsp;&nbsp;别:</label>
+		<select id="leibie" name="leibie">
+			<option value="">不限</option>
+			{{foreach $leibie as $k=>$v}}
+				<option value="{{$k}}">{{$v}}</option>
+			{{/foreach}}
+		</select>
+	</div>
+	<div>
+		<label>名&nbsp;&nbsp;&nbsp;称:</label>
+		<input id="username" name="name" value="" />
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script src="/statics/admin/js/admin_system/ad.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	adAdd(function() {
+		var username = $.trim($("#username").val());
+		if (username == "") {
+			alert("名称不能为空");
+			return false;
+		}
+	}, function() {
+		$("#name").textbox({
+			width: "30%",
+			prompt: "请输入名称",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>

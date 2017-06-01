@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{{$web_name}}</title>
+
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/un-index.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/index_1.css" />
+		<script type="text/javascript" src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/js/hdslide.js" ></script>
+		{{include file='../common/importAll.html'}}
+	</head>
+
+	<body>
+		{{include file='../common/header.html'}}
+		<!--主体-->
+		<div id="main">
+			<!--早报-->
+			<div class="bg-1">
+				<div class="sg-w-1 sg-m-1 ts-p-1 news-div">
+					<dl>
+						<dt>NEW 汽车早报:</dt>
+						{{if !empty($index_zb)}}
+						{{foreach $index_zb.rows as $v}}
+						<dd><a href="{{$v.url}}" target="_blank">{{$v.title}}</a></dd>
+						{{/foreach}}
+						{{/if}}
+					</dl>
+				</div>
+			</div>
+
+			<!--广告-->
+			<div id="banner-div">
+				<div class="sg-m-4 sg-w-1 banner">
+					<ul class="sg-ul-1">
+						{{if !empty($index_gg)}}
+						{{foreach $index_gg.rows as $v}}
+						<li><img src="{{$v.t1}}" /> </li>
+						{{/foreach}}
+						{{/if}}
+					</ul>
+				</div>
+			</div>
+
+			<!--商家推荐-->
+			<div id="general">
+				<div class="sg-m-1 sg-w-1">
+					<div class="sg-div-1 bs-ico">
+						<h3 class="h3-2 fl">商家推荐</h3>
+						<a href="/car" class="fr ts-m-1" target="_blank">更多>></a>
+					</div>
+
+					<div class="ts-div-2 sg-m-3">
+						<ul>
+                            {{if !empty($data.recommandcar)}}
+                            {{foreach $data.recommandcar.rows as $v}}
+                            <li>
+                                <a href="{{formatUrl('cars','cars',$v.id)}}" target="_blank"><img src="{{$v.tu1}}" width="280px" height="155px"/> </a>
+                                <div class="txt-wrap">
+                                    <span class="t1"><a href="{{formatUrl('cars','cars',$v.id)}}" target="_blank">{{cut_str($v.carname, 30)}}</a> </span>
+                                    <span class="t2">{{cut_str($v.message,23)}}</span>
+                                    <span class="t3">{{$v.price}} 万起</span>
+                                </div>
+                                <dl class="ts-ico-1">
+                                    <dt>推荐</dt>
+                                </dl>
+                            </li>
+                            {{/foreach}}
+                            {{/if}}
+						</ul>
+
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+
+			<!--特惠车型-->
+			<div id="general">
+				<div class="sg-m-1 sg-w-1">
+					<div class="sg-div-1 bs-ico2">
+						<h3 class="h3-2 fl">特惠车型</h3>
+						<a href="/car" class="fr ts-m-1" target="_blank">更多>></a>
+					</div>
+
+					<div class="ts-div-3 sg-m-2" id="thcarbox">
+						<ul>
+                            {{if !empty($data.car)}}
+                            {{foreach $data.car.rows as $v}}
+							<li>
+								<a href="{{formatUrl('cars','cars',$v.id)}}" target="_blank"><img src="{{$v.tu1}}" width="280px" height="200px" /> </a>
+								<div class="txt-wrap-2">
+									<h3><a href="{{formatUrl('cars','cars',$v.id)}}" target="_blank">{{cut_str($v.carname, 18)}}</a></h3>
+									<span class="t01">{{cut_str($v.address,18)}}</span>
+								</div>
+								<dl>
+									<dd class="dd1">￥{{$v.price}}万</dd>
+									<dt class="dt1">￥{{$v.price+4}}万</dt>
+								</dl>
+								<a href="{{formatUrl('cars','cars',$v.id)}}" target="_blank"><button type="button">抢先预定</button></a>
+							</li>
+                            {{/foreach}}
+                            {{/if}}
+						</ul>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+
+			<!--汽车资讯-->
+			<div  id="news-div">
+				<div class="sg-m-1 sg-w-1">
+					<div class="sg-div-1 bs-ico3">
+						<h3 class="h3-2 fl">汽车资讯</h3>
+						<a href="/channel" class="fr ts-m-1" target="_blank">更多>></a>
+					</div>
+
+					<div class="fr sg-w-2 ts-m-2">
+						{{if !empty($index_zx_r_tu)}}
+						{{foreach $index_zx_r_tu.rows as $v}}
+						<a href="{{$v.url}}" target="_blank"><img src="{{$v.t1}}" /> </a>
+						{{/foreach}}
+						{{/if}}
+						<ul class="sg-ul-2">
+							{{if !empty($data.articleimg)}}
+							{{foreach $data.articleimg.list as $v}}
+							<li>
+								<a href="{{formatUrl('article','article',$v.id)}}" target="_blank">{{cut_str($v.title,17)}}</a>
+								<p>{{cut_str($v.content, 35)}}...</p>
+							</li>
+							{{/foreach}}
+							{{/if}}
+						</ul>
+					</div>
+
+					<div class="fl sg-w-2 ts-m-2" id="catgropic">
+						{{if !empty($index_zx_1)}}
+						{{foreach $index_zx_1.rows as $v}}
+						<a href="{{$v.url}}" target="_blank"><img src="{{$v.t1}}" /> </a>
+						<span><i>车型</i><a href="{{$v.url}}">{{$v.title}}</a></span>
+						{{/foreach}}
+						{{/if}}
+					</div>
+					<div class="fl sg-w-3 ts-m-2" style="margin-left: 30px;">
+						<div class="title-div">
+							{{if !empty($index_zx_bt)}}
+							{{foreach $index_zx_bt.rows as $v}}
+							<a href="{{$v.url}}" target="_blank">{{$v.title}}</a>
+							{{/foreach}}
+							{{/if}}
+						</div>
+						<div class="news-list">
+							<ul>
+                                {{if !empty($data.article)}}
+                                {{foreach $data.article.list as $v}}
+								<li><a href="{{formatUrl('article','article',$v.id)}}" target="_blank">{{$v.title}}</a></li>
+                                {{/foreach}}
+                                {{/if}}
+							</ul>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+
+			<!--报团看车--->
+
+			<div id="general">
+				<div class="sg-m-2 sg-w-1">
+					<div class="sg-div-1 bs-ico2">
+						<h3 class="h3-2 fl">报团看车</h3>
+						<a href="/huddle" class="fr ts-m-1" target="_blank">更多>></a>
+					</div>
+
+					<div class="ts-div-3 sg-m-2" id="tgcarbox">
+						<ul>
+                            {{if !empty($data.huddle)}}
+                            {{foreach $data.huddle.rows as $v}}
+							<li>
+								<a href="/huddle" target="_blank"><img src="{{$v.t1}}" width="280px" height="200px"/> </a>
+								<div class="txt-wrap-2">
+									<h3><a href="/huddle">{{cut_str($v.bname,18)}}</a></h3>
+									<span class="t01">地址：{{cut_str($v.baddress,18)}}</span>
+								</div>
+								<dl>
+									<dt class="dt2">{{$v.people}}人参与</dt>
+								</dl>
+								<a href="/huddle" target="_blank"><button type="button">立即参团</button></a>
+							</li>
+                            {{/foreach}}
+                            {{/if}}
+
+						</ul>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+		<div class="clear"></div>
+
+		{{include file='../common/footer.html'}}
+		<div style="display: none;">
+			{{config_item('cnzz')}}
+		</div>
+	</body>
+
+</html>

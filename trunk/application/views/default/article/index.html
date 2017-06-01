@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		<meta http-equiv="Cache-Control" content="no-transform">
+		<meta name="mobile-agent" content="format=html5;url={{getServer('REMOTE_HOST')}}{{formatUrl('article_m', $article.dir, $article.id)}}">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="{{if $article.keywords}}{{$article.keywords}}{{else}}{{$article.title}}{{/if}}">
+		<meta name="description" content="{{if $article.description}}{{$article.description}}{{else}}{{cut_str(strip_tags($article.content), 250)}}{{/if}}" />
+		<title>{{$article.title}}_{{$web_name}}</title>
+		{{include file='../common/importAll.html'}} {{if !isset($addata)}}
+		<script type="text/javascript" id="ad" data-url="{{formatUrl('domain')}}{{formatUrl('home')}}" data-uid="{{$article.uid}}" data-typeid="1" src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/js/ad.js?v={{config_item('system_version')}}"></script>
+		{{/if}}
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/un-index.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/zx.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/index_1.css" />
+		<script type="text/javascript" src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/js/hdslide.js" ></script>
+		<link href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/css/article_article.css?v={{config_item('system_version')}}" rel="stylesheet" type="text/css" />
+
+	</head>
+
+	<body>
+		{{include file='../common/header.html'}}
+		<div id="content">
+			<div class="c_top">
+				<span class="man_baoxie">当前位置：<a href="{{formatUrl('home')}}">汽车首页</a> {{if !empty($article)}} &gt; <a href="/channel">汽车资讯</a>{{/if}} {{if !empty($article)}} &gt; {{$article.title}} {{/if}}</span>
+			</div>
+			<div class="c_left">
+				<div class="c_l_1">
+					<h1>{{$article.title}}</h1>
+					<div class="clear"></div>
+
+					<div class="xin_xi">
+						<span>发布于：&nbsp;{{date("Y-m-d", $article.addtime)}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编辑：&nbsp;{{$article.editor}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读量:&nbsp;&nbsp;&nbsp;({{$readnum}})</span>
+					</div>
+					<div class="clear"></div>
+					<span class="sheng_m">声明：本文由平台作者撰写，观点仅代表作者本人，如涉及专业知识，仅供参考。</span>
+					<div class="clear"></div>
+					<div class="zheng_w">
+						{{$article.content}}
+					</div>
+					<div class="clear"></div>
+					<div class="zheng_x">
+						<form name="see">
+							<div align="center"><center>
+
+							</center></div>
+						</form>
+
+					</div>
+					<div class="clear30"></div>
+					<ul class="p_n_ul">
+						{{if !empty($prevArticle)}}
+						<li>上一篇：<a href="{{formatUrl('article', 'article', $prevArticle.id)}}">{{$prevArticle.title}}</a></li>
+						{{else}}
+						<li>上一篇：没有了 </li>
+						{{/if}}
+						{{if !empty($nextArticle)}}
+						<li>下一篇：<a href="{{formatUrl('article', 'article', $nextArticle.id)}}">{{$nextArticle.title}}</a></li>
+						{{else}}
+						<li>下一篇：没有了 </li>
+						{{/if}}
+					</ul>
+					<div class="clear20" style="border-bottom:1px solid #dddddd;"></div>
+
+					<!--<div class="f_b_f">-->
+						<div class="fx bg-1">
+							<div class="fxbox">
+								<div class="bdsharebuttonbox">
+									<span class="fl" style="overflow:visible;">分享到:</span>
+									<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+									<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+									<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+									<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+									<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+									<a href="#" class="bds_more" data-cmd="more"></a>
+								</div>
+								<script>
+									window._bd_share_config = {
+										"common": {
+											"bdSnsKey": {},
+											"bdText": "",
+											"bdMini": "2",
+											"bdMiniList": false,
+											"bdPic": "",
+											"bdStyle": "1",
+											"bdSize": "32"
+										},
+										"share": {}
+									};
+									with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+								</script>
+							</div>
+						</div>
+					<!--</div>-->
+
+					<div class="clear20"></div>
+				</div>
+
+			</div>
+
+			<div class="c_right">
+				{{if !empty($channelRecommand.list)}}
+				<div class="clear20"></div>
+				<div class="fr  recommend-div ">
+					<!--商家推荐-->
+					<div class="recommend-cont bg-1">
+						<h3>商家推荐</h3>
+						{{if $recommandcar.rows}}
+						{{foreach $recommandcar.rows as $k=>$v}}
+						<a href="{{formatUrl('cars', 'cars', $v.id)}}">
+							<img src="{{$v.tu1}}" />
+							<dl>
+								<dt>{{cut_str($v.carname,10)}}</dt>
+								<dd>5.04万/公里</dd>
+								<dd><em>￥{{$v.price}}/万</em></dd>
+							</dl>
+						</a>
+						{{/foreach}}
+						{{/if}}
+					</div>
+
+					<!--二手车推荐-->
+					<div class="recommend-cont sg-m-3 bg-1">
+						<h3>二手车推荐</h3>
+						{{if $index_er_sou.rows}}
+						{{foreach $index_er_sou.rows as $k=>$v}}
+						{{$v.url}}
+						{{/foreach}}
+						{{/if}}
+					</div>
+				</div>
+
+				<!--<div class="lm_tj">-->
+					<!--<h2>精彩推荐</h2>-->
+					<!--<ul class="lm_tj_lb">-->
+						<!--{{foreach $channelRecommand.list as $k=>$v}}-->
+						<!--<li><a href="{{formatUrl('article', $v.dir, $v.id)}}" target="_blank">{{$v.title}}</a></li>-->
+						<!--{{/foreach}}-->
+					<!--</ul>-->
+				<!--</div>-->
+				<!--{{/if}}-->
+				<!--{{if !empty($allArticle.list)}}-->
+				<!--<div class="clear20"></div>-->
+				<!--<div class="re_wen">-->
+					<!--<h2>精彩测试&nbsp;TOP10</h2>-->
+					<!--<ul class="num">-->
+						<!--{{foreach $allArticle.list as $k=>$v}}-->
+						<!--<li><span class="num_n"{{if $k<3}} style="color:#ff5a00"{{/if}}>{{if $k<9}}0{{$k+1}}{{else}}{{$k+1}}{{/if}}</span><a href="{{formatUrl('article', $v.dir, $v.id)}}" target="_blank">{{$v.title}}</a></li>-->
+						<!--{{/foreach}}-->
+					<!--</ul>-->
+				<!--</div>-->
+				<!--{{/if}}-->
+			</div>
+
+		</div>
+		{{include file='../common/footer.html'}}
+		<div style="display: none;">
+			{{config_item('cnzz')}}
+		</div>
+		<script type="text/javascript">
+			$.ajax({
+						url: '/article/read_add_ajax/?id={{$article.id}}',
+						method: 'post',
+						dataType: 'json',
+						data: {},
+						success:function () {
+					}
+			});
+		</script>
+	</body>
+
+</html>

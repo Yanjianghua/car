@@ -1,0 +1,32 @@
+.topcont{border: 1px solid #e7e7e7;border-top: 2px solid #0792E8;height: 65px; text-align: center;}
+.topcont dl dt{display:block;padding: 15px;border-right: 1px dashed #e7e7e7;font-size: 12px;color: #999;float: left;}
+.topcont dl dt:first-child{font-size: 20px;color: #333;border-right: 1px solid #e7e7e7;line-height: 35px;}
+.topcont dl dt i{display:block;}
+.topcont span{display:inline-block;float:right;padding:20px  20px 10px 40px; background: url(../images/icon-1.png) no-repeat 0px -505px;font-size: 20px;color: #333;}
+#bigpicbox ul li img{display: block;}
+#bigpicbox ul li.shows{display: block;}
+#spicbox ul li{ display: block;float: left; height: 90px; border: 1px solid #ccc;margin-top: 10px; margin-right: 5px;}
+#spicbox ul li img{display:block;padding: 0; margin: 0;}
+#spicbox ul li.select5{border: 1px solid #ff5837;}
+.cont-div{ padding: 5px 50px; width: 520px;}
+.cont-div h3{font-size: 28px;color: #333; display: block;margin-bottom: 25px;}
+.cont-div label{display: block; line-height: 30px;color: #666;padding: 10px 0;}
+.cont-div label i{display: inline-block; width: 90px;}
+.cont-div label b{font-size: 32px;color: #ff5837;}
+.cont-div label em{color: #ff5837;}
+.cont-div span{display: block; border: 1px solid #f1d7da;padding: 15px; background: #fff7f7; line-height: 30px;position: relative;}
+.cont-div span em{color: #ff5837;}
+.cont-div span button{background: #ff5837;border: 0;color: #fff;font-weight: bold;font-size: 20px; position: absolute; right: 20px;top: 35px;padding:8px 10px;}
+.cont-div dl{ display: block; background: url(../images/icon-1.png) no-repeat 0px -582px;padding-left:60px;margin-top: 5px;}
+.cont-div dl dt{font-size: 28px;color: #009900;}
+.cont-div dl dd{font-size: 14px;color: #666;}
+
+.content-div h3{font-size: 28px;color: #333;}
+.content-div table{margin: 30px 0;}
+.content-div table tr:first-child{background: #f4f4f4;}
+.content-div table tr td{padding: 10px;text-align: center;font-size: 18px;color: #333;line-height: 30px;}
+.content-div table tr td.color-1{color: #ff5837;}
+.content-div table tr td button{border: 1px solid #ff5837; background: #fff;padding: 5px 15px;color: #ff5837;font-size: 16px;font-family: "微软雅黑";}
+.content-div table tr:hover{background: #fff7f7;}
+.imgbox{width: 865px; margin: 30px auto; overflow: hidden;}
+.imgbox img{ display: block;margin-bottom: 30px; max-width:865px; max-height: auto;}

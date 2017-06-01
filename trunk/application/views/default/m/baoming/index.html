@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<!--<meta http-equiv="Access-Control-Allow-Origin" content="www.local.che.com">-->
+		<meta http-equiv="Host" content="www.local.che.com">
+		<meta charset="utf-8">
+		<title>{{$web_name}}</title>
+		{{include file='../common/importAll.html'}}
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/css/comm.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/css/index.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/css/swiper.min.css" />
+	</head>
+
+	<body class="wap-bg-1">
+	<header class="wap-bg-4 wap-pst-r" id="listheader">
+		<h3 class="wap-fnts-2">特惠车型</h3>
+		<a href="#" class="list-top-a1"  id="check"><img src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/images/fkico.png" /></a>
+		<a href="" onClick="javascript:history.back(-1);"  class="list-top-a2"><img src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/images/jtico.png"  /></a>
+	</header>
+	<div id="listnavbox" style="display: none;">
+		<div class="navlist1 wap-bg-2 wap-pad-1">
+			<ul class="listnav">
+				<li><a href="/m/">首页</a></li>
+				<li ><a href="/m/shop">商家推荐</a></li>
+				<li class="blue"><a href="/m/car">特惠车型</a></li>
+				<li><a href="/m/huddle">报团看车</a></li>
+			</ul>
+			<div class="listbox">
+				<h3 class="wap-fnts-1">品牌</h3>
+				<ul class="listnav">
+					<li class="blue"><a href="">不限</a></li>
+					{{if !empty($brand)}}
+					{{foreach $brand.rows as $v}}
+					<li><a href="/m/search?brand={{$v.id}}">{{$v.name}}</a></li>
+					{{/foreach}}
+					{{/if}}
+				</ul>
+			</div>
+			<div class="listbox">
+				<h3 class="wap-fnts-1">车型</h3>
+				<ul class="listnav">
+					<li class="blue"><a href="">不限</a></li>
+					{{if !empty($grade)}}
+					{{foreach $grade.rows as $v}}
+					<li><a href="/m/search?grade={{$v.id}}">{{$v.name}}</a></li>
+					{{/foreach}}
+					{{/if}}
+				</ul>
+			</div>
+			<div class="listbox">
+				<h3 class="wap-fnts-1">价格</h3>
+				<ul class="listnav">
+					<li class="blue"><a href="">不限</a></li>
+					{{if !empty($price)}}
+					{{foreach $price.rows as $v}}
+					<li><a href="/m/search?price={{$v.name}}">{{$v.name}}万</a></li>
+					{{/foreach}}
+					{{/if}}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var Abut=document.getElementById("check");
+		var ListNavBox=document.getElementById("listnavbox");
+		Abut.onclick=function(){
+			if(ListNavBox.style.display=="block"){
+				ListNavBox.style.display="none";
+			}else{
+				ListNavBox.style.display="block";
+			}
+
+		}
+	</script>
+	<!--头部-->
+	<div id="header-box" class="wap-pst-r">
+		<!-- 焦点图 -->
+		<div class="swiper-container wap-max-h-1">
+			<ul class="swiper-wrapper">
+				<li class="swiper-slide"><img src="{{formatUrl('home')}}statics/{{config_item('style')}}/m/images/topbanner.jpg" /> </li>
+			</ul>
+		</div>
+	</div>
+	<section id="frombox" class="wap-pad-2">
+		<form action="" name="myfrom" method="POST" id="myform1" >
+			<h3>免费预约参与</h3>
+			<span>现代瑞纳2014款1.4L智能型</span>
+			<ul class="wap-pad-1">
+				{{if !empty($carid)}}<input type="hidden" id="carid" name="carid" value="{{$carid}}" />{{/if}}
+				{{if !empty($huddleid)}}<input type="hidden" id="huddleid" name="huddleid" value="{{$huddleid}}" />{{/if}}
+				<li><label><input id="username" type="text" name="username" value="" placeholder="您的姓名" class="input1 ico1 " /><dd>请输入用户名</dd></label></li>
+				<li><label><input id="telephone" type="text" name="telephone" value=""  placeholder="您的手机" class="input1 ico2"  /><dd>请输入手机号</dd></label></li>
+				<li><label><button type="button" value="" class="but1" >立即提交</button></label></li>
+			</ul>
+		</form>
+	</section>
+	<script>
+		$(function(){
+			var tm1=false;
+			var tm2=false;
+			var tnum=/^1[34578]\d{9}$/;
+			// 验证用户名
+			$('input[name="username"]').focus(function(){
+				$(this).next().text('姓名应为2个字符以上').removeClass('dd4').addClass('dd3');
+			}).blur(function(){
+				if($(this).val().length >= 2 && $(this).val().length <=12 && $(this).val()!=''){
+					$(this).next().text('输入正确').removeClass('dd3').addClass('dd2');
+					tm1=true;
+				}else{
+					$(this).next().text('请输入姓名').removeClass('dd2').addClass('dd3');
+				}
+
+			});
+
+			//验证电话
+			$('input[name="telnum"]').focus(function(){
+				$(this).next().text('请输入正确的电话号码').removeClass('dd4').addClass('dd3');
+			}).blur(function(){
+				if($(this).val().search(tnum)){
+					$(this).next().text('请输入正确的电话号码').removeClass('dd2').addClass('dd3');
+
+				}else{
+					$(this).next().text('输入正确').removeClass('dd3')
+					tm2=true;
+
+				}
+
+			});
+
+			$('.but1').click(function(){
+					$.ajax({
+						url: '/m/bm',
+						method: 'POST',
+						dataType: 'json',
+						data: {
+							username:$("#username").val(),
+							telephone:$("#telephone").val(),
+							carid:$("#carid").val(),
+//							huddleid:$("#huddleid").val()
+						},
+						success:function (data) {
+							alert("报名成功haole ");
+						}
+					});
+			});
+
+		})
+	</script>
+		{{include file='../common/footer.html'}}
+	</body>
+
+</html>

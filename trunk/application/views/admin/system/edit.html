@@ -1,0 +1,63 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<input type="hidden" name="id" value="{{$id}}" />
+	<div>
+		<label>类&nbsp;&nbsp;&nbsp;别:</label>
+		<select id="leibie" name="leibie">
+			<option value="">不限</option>
+			{{foreach $leibie as $k=>$v}}
+			<option value="{{$k}}" {{if $sys.bh == $k }}selected{{/if}}>{{$v}}</option>
+			{{/foreach}}
+		</select>
+	</div>
+	<div>
+		<label>名&nbsp;&nbsp;&nbsp;称:</label>
+		<input id="username" name="name" value="{{$sys.name}}" />
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script type="text/javascript">
+	function adAdd(check, button) {
+		$('#form').form({
+			url: "/Admin_System/edit/",
+			onSubmit: function() {
+				if(check() === false){
+					return false;
+				}
+				$("#window").mask();
+				return true;
+			},
+			success: function(data) {
+				data = JSON.parse(data);
+				if (!data.success) {
+					alert(data.msg);
+				} else {
+					$("#data_table_body").datagrid("reload");
+					$("#window").window("close");
+				}
+				$("#window").unmask();
+			}
+		});
+		button();
+	}
+	adAdd(function() {
+		var username = $.trim($("#username").val());
+
+		if (username == "") {
+			alert("名不能为空");
+			return false;
+		}
+	}, function() {
+		$('#username').textbox({
+			width: "30%",
+			prompt: "请输入店名",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>

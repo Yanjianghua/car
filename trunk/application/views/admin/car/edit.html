@@ -1,0 +1,249 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<input type="hidden" name="id" value="{{$id}}" />
+	<div>
+		<label>店&nbsp;&nbsp;&nbsp;名:</label>
+		<input id="username" name="store" value="{{$car.store}}" />
+	</div>
+	<div>
+		<label>车&nbsp;&nbsp;&nbsp;名:</label>
+		<input id="carname2" name="carname" value="{{$car.carname}}" />
+	</div>
+	<div>
+		<label>优惠价格:</label>
+		<input id="truename" name="price" value="{{$car.price}}" />
+	</div>
+    <div>
+        <label>厂家指导价格:</label>
+        <input id="cj_price" name="cj_price" value="" />
+    </div>
+	<div>
+		<label>品&nbsp;&nbsp;&nbsp;牌:</label>
+		<select id="brand1">
+			<option value="">不限品牌</option>
+			{{foreach $brand as $k=>$v}}
+				<option value="{{$v.id}}" {{if $car.brand == $v.id }}selected{{/if}}>{{$v.name}}</option>
+			{{/foreach}}
+		</select>
+	</div>
+	<div>
+		<label>品&nbsp;&nbsp;&nbsp;牌:</label>
+		<select id="grade1">
+			<option value="">不限级别</option>
+			{{foreach $grade as $k=>$v}}
+			<option value="{{$v.id}}" {{if $car.grade == $v.id }}selected{{/if}}>{{$v.name}}</option>
+			{{/foreach}}
+		</select>
+	</div>
+	<div>
+		<label>优惠信息:</label>
+		<input id="message" name="message" value="{{$car.message}}" />
+	</div>
+	<div>
+		<label>商家住址:</label>
+		<input id="address" name="address" value="{{$car.address}}" />
+	</div>
+	<div>
+		<label>电&nbsp;&nbsp;&nbsp;话:</label>
+		<input id="telephone" name="telephone" value="{{$car.telephone}}" />
+	</div>
+	<div>
+		<label>开始时间:</label>
+		<input id="stime" type="date" name="stime" value="{{$car.stime}}" />
+	</div>
+	<div>
+		<label>结束时间:</label>
+		<input id="etime" type="date"  name="etime" value="{{$car.etime}}" />
+	</div>
+	<div>
+		<label>图片1:</label>
+		<input id="pic1" type="file"  name="tu1" value="" />
+	</div>
+	<div>
+		<label>图片2:</label>
+		<input id="pic2" type="file"  name="tu2" value="" />
+	</div>
+	<div>
+		<label>图片3:</label>
+		<input id="pic3" type="file"  name="tu3" value="" />
+	</div>
+	<div>
+		<label>图片4:</label>
+		<input id="pic4" type="file"  name="tu4" value="" />
+	</div>
+	<div>
+		<label>内容:</label>
+		<textarea id="content1" name="content" value="{{$car.content}}"></textarea>
+	</div>
+	<div>
+		<label>经度:</label>
+		<input id="point_left"  name="point_left" value="{{$car.point_left}}" />
+	</div>
+	<div>
+		<label>纬度:</label>
+		<input id="point_right"  name="point_right" value="{{$car.point_right}}" />
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script type="text/javascript">
+	function adAdd(check, button) {
+		$('#form').form({
+			url: "/Admin_Car/edit/",
+			onSubmit: function() {
+				if(check() === false){
+					return false;
+				}
+				$("#window").mask();
+				return true;
+			},
+			success: function(data) {
+				data = JSON.parse(data);
+				if (!data.success) {
+					alert(data.msg);
+				} else {
+					$("#data_table_body").datagrid("reload");
+					$("#window").window("close");
+				}
+				$("#window").unmask();
+			}
+		});
+		button();
+	}
+	adAdd(function() {
+		var carname2 = $.trim($("#carname2").val());
+		var username = $.trim($("#username").val());
+		if (carname2 == "") {
+			alert("车名不能为空");
+			return false;
+		}
+		if (username == "") {
+			alert("店名不能为空");
+			return false;
+		}
+	}, function() {
+		$("#carname2").textbox({
+			width: "30%",
+			prompt: "请输入车名",
+			type: "text"
+		});
+		$('#username').textbox({
+			width: "30%",
+			prompt: "请输入店名",
+			type: "text"
+		});
+		$('#truename').textbox({
+			width: "30%",
+			prompt: "请输入优惠价格",
+			type: "text"
+		});
+        $('#cj_price').textbox({
+            width: "30%",
+            prompt: "请输入厂家指导价格",
+            type: "text"
+        });
+		$('#brand1').combobox({
+			width: "30%",
+			prompt: "请输入品牌",
+			type: "text"
+		});
+		$('#grade1').combobox({
+			width: "30%",
+			prompt: "请输入优惠价格",
+			type: "text"
+		});
+		$('#message').textbox({
+			width: "30%",
+			prompt: "请输入优惠信息",
+			type: "text"
+		});
+		$('#address').textbox({
+			width: "50%",
+			prompt: "请输入商家地址",
+			type: "text"
+		});
+		$('#telephone').textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "text"
+		});
+		$('#stime').textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "date"
+		});
+		$('#etime').textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "date"
+		});
+		$('#pic1').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是565 * 385的图片",
+			type: "text"
+		});
+		$('#pic2').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是565 * 385的图片",
+			type: "text"
+		});
+		$('#pic3').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是565 * 385的图片",
+			type: "text"
+		});
+		$('#pic4').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是565 * 385的图片",
+			type: "text"
+		});
+		$('#sp1').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是865 * 629的图片",
+			type: "text"
+		});
+		$('#sp2').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是865 * 629的图片",
+			type: "text"
+		});
+		$('#sp3').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是865 * 629的图片",
+			type: "text"
+		});
+		$('#point_left').textbox({
+			width: "30%",
+			prompt: "请输入经度",
+			type: "text"
+		});
+		$('#point_right').textbox({
+			width: "30%",
+			prompt: "请输入纬度",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>
+<script type="text/javascript">
+	CKEDITOR.replace('content', {
+		toolbar: [
+			['Source'],
+			['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+			['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+			['BidiLtr', 'BidiRtl'],
+			'/', ['Bold', 'Italic', 'Underline', 'Strike'],
+			['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote', 'CreateDiv'],
+			['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+			['Link', 'Unlink', 'Anchor'],
+			['Image', 'SpecialChar', 'Table'],
+			'/', ['Styles', 'Format', 'Font', 'FontSize'],
+			['TextColor', 'BGColor'],
+			['Maximize', 'ShowBlocks']
+		]
+	});
+</script>

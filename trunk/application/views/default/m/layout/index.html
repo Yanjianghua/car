@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta charset="utf-8">
+		<title>{{$web_name}}</title>
+		{{include file='../common/importAll.html'}}
+		<!--<link rel="stylesheet" type="text/css" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/css/wap_index.css?v={{config_item('system_version')}}">-->
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/css/comm.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/css/index.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/css/swiper.min.css" />
+		<script type="text/javascript" src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/js/TouchSlide.1.1.js?v={{config_item('system_version')}}"></script>
+	</head>
+
+	<body class="wap-bg-1">
+		{{include file='../common/header.html'}}
+		<!--导航-->
+		<nav id="nav-box" class="wap-bg-2 wap-bd-bt-1">
+			<a href="/m/car">
+				<span><i>找</i>特惠车</span>
+				<p>最具优惠车型</p>
+			</a>
+			<a href="/m/shop">
+				<span><i>商</i>家推荐</span>
+				<p>热销车型推荐</p>
+			</a>
+			<a href="/m/huddle">
+				<span><i>报</i>团看车</span>
+				<p>报团一起砍价</p>
+			</a>
+		</nav>
+
+		<div id="fixed-divbox">
+			<div class="fixed-bg"></div>
+			<div class="hotnav" style="">
+				<h3 class="wap-fnts-1 ">热门品牌</h3>
+				<ul class="listnav wap-marg-t-1">
+					{{if !empty($brand)}}
+					{{foreach $brand.rows as $v}}
+					<li><a href="/m/search?brand={{$v.id}}">{{$v.name}}</a></li>
+					{{/foreach}}
+					{{/if}}
+				</ul>
+			</div>
+			<div class="fixed-nav">
+				<a href="/m/"><i></i>首 页</a>
+				<a href="/m/car"><i></i>商家推荐</a>
+				<a href="/m/huddle"><i></i>报团看车</a>
+			</div>
+		</div>
+		</div>
+		<script>
+			$(function(){
+				$("#fixed-divbox").hide();
+				$(".checknav").click(function(){
+					$("#fixed-divbox").slideToggle();
+				})
+			})
+		</script>
+		<!--商家推荐-->
+		<section id="content-box" class="wap-bg-2 wap-marg-t-1">
+			<div class="text-list">
+				<h1 class="wap-fnts-1 wap-pad-1">商家推荐</h1>
+				<ul class="wap-ul-1">
+					{{if !empty($data.recommandcar)}}
+					{{foreach $data.recommandcar.rows as $v}}
+					<li>
+						<a href="{{formatUrl('cars_m','cars',$v.id)}}">
+							<img src="{{$v.tu1}}" />
+							<dl class="text-dl-1 wap-pst-r">
+								<dd>{{cut_str($v.carname, 30)}}</dd>
+								<dt>{{cut_str($v.message,23)}}</dt>
+								<i>{{$v.price}}万/起</i>
+							</dl>
+						</a>
+					</li>
+					{{/foreach}}
+					{{/if}}
+				</ul>
+				<a href="/m/car" class="more">查看更多</a>
+			</div>
+		</section>
+		<!--特惠车型-->
+		<section id="onsale-box" class="wap-bg-2 wap-marg-t-1">
+			<div class="text-list">
+				<h1 class="wap-fnts-1 wap-pad-1">特惠车型</h1>
+				{{if !empty($data.car)}}
+				{{foreach $data.car.rows as $v}}
+				<div class="wap-list-div-1">
+					<a href="{{formatUrl('cars_m','cars',$v.id)}}">
+						<aside>
+							<img src="{{$v.tu1}}" />
+						</aside>
+						<aside>
+							<h3>{{cut_str($v.carname, 18)}}</h3>
+							<p>特惠时间：<i>{{date('Y年m月d日',$v.stime)}}~{{date('Y年m月d日',$v.etime)}}</i></p>
+							<p>特价:￥{{$v.price}}/万</p>
+						</aside>
+					</a>
+				</div>
+				{{/foreach}}
+				{{/if}}
+				<a href="/m/car" class="more2">查看更多</a>
+			</div>
+		</section>
+
+		<!--报团看车-->
+		<section id="onsale-box" class="wap-bg-2 wap-marg-t-1">
+			<div class="text-list">
+				<h1 class="wap-fnts-1 wap-pad-1">报团看车</h1>
+				{{if !empty($data.huddle)}}
+				{{foreach $data.huddle.rows as $v}}
+				<div class="wap-list-div-2">
+					<a href="/m/huddle">
+						<aside>
+							<img src="{{$v.t1}}" />
+						</aside>
+						<aside>
+							<h3>{{cut_str($v.bname,18)}}</h3>
+							<p>时间：<i>{{$v.stime}}~{{$v.etime}}</i></p>
+							<b>参团人数:{{$v.people}}人</b>
+						</aside>
+					</a>
+				</div>
+				{{/foreach}}
+				{{/if}}
+				<a href="/m/huddle" class="more2">更多报团</a>
+			</div>
+		</section>
+
+		{{include file='../common/footer.html'}}
+	</body>
+
+</html>

@@ -1,0 +1,90 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<input type="hidden" name="id" value="{{$id}}" />
+	<div>
+		<label>店&nbsp;&nbsp;&nbsp;名:</label>
+		<input id="storename2" name="storename" value="{{$store.storename}}" />
+	</div>
+    <div>
+        <label>商家住址:</label>
+        <input id="address" name="address" value="{{$store.address}}" />
+    </div>
+    <div>
+        <label>电&nbsp;&nbsp;&nbsp;话:</label>
+        <input id="telephone" name="telephone" value="{{$store.telephone}}" />
+    </div>
+    <div>
+        <label>经度:</label>
+        <input id="point_left"  name="point_left" value="{{$store.point_left}}" />
+    </div>
+    <div>
+        <label>纬度:</label>
+        <input id="point_right"  name="point_right" value="{{$store.point_right}}" />
+    </div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script type="text/javascript">
+	function adAdd(check, button) {
+		$('#form').form({
+			url: "/Admin_Store/edit/",
+			onSubmit: function() {
+				if(check() === false){
+					return false;
+				}
+				$("#window").mask();
+				return true;
+			},
+			success: function(data) {
+				data = JSON.parse(data);
+				if (!data.success) {
+					alert(data.msg);
+				} else {
+					$("#data_table_body").datagrid("reload");
+					$("#window").window("close");
+				}
+				$("#window").unmask();
+			}
+		});
+		button();
+	}
+	adAdd(function() {
+        var storename = $.trim($("#storename2").val());
+        if (storename == "") {
+            alert("店名不能为空");
+            return false;
+        }
+    }, function() {
+        $('#storename2').textbox({
+            width: "30%",
+            prompt: "请输入店名",
+            type: "text"
+        });
+
+        $('#address').textbox({
+            width: "50%",
+            prompt: "请输入商家地址",
+            type: "text"
+        });
+        $('#telephone').textbox({
+            width: "30%",
+            prompt: "请输入手机号",
+            type: "text"
+        });
+        $('#point_left').textbox({
+            width: "30%",
+            prompt: "请输入经度",
+            type: "text"
+        });
+        $('#point_right').textbox({
+            width: "30%",
+            prompt: "请输入纬度",
+            type: "text"
+        });
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>

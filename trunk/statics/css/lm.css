@@ -1,0 +1,53 @@
+#brand,#brand2,#brand3{height: 52px; position: relative;}
+#brand span,#brand2 span,#brand3 span{display: inline-block; background: #f1f1f1;padding:15px 25px;color: #666;float: left;}
+#brand ul li,#brand2 ul li,#brand3 ul li{display: inline-block;margin-left: 10px;padding:5px 10px;font-size: 14px; margin-top: 10px;}
+#brand ul li a,#brand2 ul li a,#brand3 ul li a{color: #333;}
+#brand ul li.select3,#brand2 ul li.select3,#brand3 ul li.select3{color: #fff; background: #37AFFA;}
+#brand ul li.select3 a,#brand2 ul li.select3 a,#brand3 ul li.select3 a{color: #fff;}
+
+
+#brand i{position: absolute;color:#666;font-size:16px;bottom: 15px;right: 10px;display: inline-block;padding-right: 20px; background: url(../images/jiantou.png) no-repeat 40px 10px;cursor: pointer;}
+.carstyle-div {background: #f1f1f1;position: relative;}
+.carstyle-div h3{color: #333;padding:10px 15px;}
+.carstyle-div dl{position: absolute;right: 10px;top: 10px;font-size: 16px;}
+.carstyle-div dl dt{display: inline-block;padding:0 40px 0 15px;border-right: 1px solid #ccc; background: url(../images/icon-1.png) no-repeat 93px -409px;}
+.carstyle-div dl dt:last-child{border-right: 0;}
+.carstyle-div dl dt a{color: #333;}
+.carstyle-div dl dt.select4{background: url(../images/icon-1.png) no-repeat 93px -382px;}
+.carstyle-div dl dt.select4 a{color:#fc5835;}
+
+.carlistbox ul li{ display: block;padding: 20px 0;height: 190px;border-bottom: 1px solid #ccc;}
+.carlistbox ul li img {border-radius: 10px;float: left;}
+.carlistbox ul li span{display: inline-block;margin-left: 20px;}
+.carlistbox ul li span dl{line-height: 40px;margin-top: 20px;}
+.carlistbox ul li span dl dt{display: block; padding-left: 30px;color: #666;}
+.carlistbox ul li span dl dd{display: block;margin-top: 28px;font-size: 20px;color: #fc5835;padding-left: 30px;}
+.carlistbox ul li label{display: block;float:right;margin-right: 20px;}
+.carlistbox ul li label dl{ display: block;margin-top:40px;line-height: 30px;}
+.carlistbox ul li label dl dt{font-size: 14px;color: #666;padding: 5px 0;}
+.carlistbox ul li label dl dt:first-child{font-size: 22px;color: #fc5835;}
+.carlistbox ul li label dl dd{font-size: 22px;color: #333;padding: 20px 0;}
+.carlistbox ul li:hover{border-bottom: 1px solid #0792E8;transition: border  0.5s ease-in;   -webkit-transition:all 0.5s ease-in;-moz-transition: all 0.5s ease-in;box-shadow: -2px 2px 15px #ccc;}
+.carlistbox ul li a{color: #333;}
+.carlistbox ul li a:hover{color: #0792E8;}
+.c_page {
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    width: 900px;
+    margin: 40px 0 30px 0;
+}
+.c_page .pagelist {
+    margin: 0 auto;
+}
+.pagelist a {
+    margin-right: 5px;
+    margin-top: 1px;
+    display: inline;
+    padding: 4px 8px 5px 8px;
+    text-align: center;
+    color: #333333;
+    line-height: 32px;
+    height: 32px;
+    border: 1px solid gray;
+}

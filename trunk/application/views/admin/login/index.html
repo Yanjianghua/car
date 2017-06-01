@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>登录</title>
+		{{include file='../../common/importAll.html'}}
+        <link href="/statics/css/login.css" rel="stylesheet" />
+		<script src="/statics/js/admin/Login/win.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/statics/js/admin/Login/form.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+    <div class="wrap">
+        <div class="login">
+            <div class="logo"></div>
+            <form method="post" action="/admin_Login/index/">
+                <label>
+                    <span>用户名：</span>
+                    <input type="text" name="username" />
+                </label>
+                <label>
+                    <span>密　码：</span>
+                    <input type="password" name="password" />
+                </label>
+                <label>
+                    <span>验证码：</span>
+                    <input type="text" name="code" class="code" />
+                    <img src="/admin_Login/code/" class="codeimg" />
+                </label>
+                <input type="image" class="submit" src="/statics/images/dl_06.gif" value="" />
+            </form>
+            <script type="text/javascript">
+                $(".codeimg").attr("src", $(".codeimg").attr("src") + "?s=" + Math.random());
+                $(".codeimg").click(function() {
+                    $(this).attr("src", $(this).attr("src") + "?s=" + Math.random());
+                });
+                $("form input").focus(function() {
+                    $(this).addClass("focus");
+                }).blur(function() {
+                    $(this).removeClass("focus");
+                });
+            </script>
+        </div>
+    </div>
+	</body>
+
+</html>

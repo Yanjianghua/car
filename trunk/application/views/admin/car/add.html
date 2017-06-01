@@ -1,0 +1,194 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<div>
+		<label>4S&nbsp;&nbsp;店名:</label>
+		<select id="storeid" name="storeid">
+			<option value="">不限</option>
+			{{foreach $store as $k=>$v}}
+			<option value="{{$v.id}}">{{$v.storename}}</option>
+			{{/foreach}}
+		</select>
+	</div>
+	<div>
+		<label>车&nbsp;&nbsp;&nbsp;名:</label>
+		<input id="carname1" name="carname" value="" />
+	</div>
+	<div>
+		<label>优惠价格:</label>
+		<input id="truename" name="price" value="" />
+	</div>
+    <div>
+        <label>厂家指导价格:</label>
+        <input id="cj_price" name="cj_price" value="" />
+    </div>
+	<div>
+		<label>品&nbsp;&nbsp;&nbsp;牌:</label>
+		<select id="brand1" name="brand">
+			<option value="">不限品牌</option>
+			{{foreach $brand as $k=>$v}}
+				<option value="{{$v.id}}">{{$v.name}}</option>
+			{{/foreach}}
+		</select>
+	</div>
+	<div>
+		<label>品&nbsp;&nbsp;&nbsp;牌:</label>
+		<select id="grade1" name="grade">
+			<option value="">不限级别</option>
+			{{foreach $grade as $k=>$v}}
+			<option value="{{$v.id}}">{{$v.name}}</option>
+			{{/foreach}}
+		</select>
+	</div>
+	<div>
+		<label>优惠信息:</label>
+		<input id="message" name="message" value="" />
+	</div>
+	<!--<div>-->
+		<!--<label>商家住址:</label>-->
+		<!--<input id="address" name="address" value="" />-->
+	<!--</div>-->
+	<!--<div>-->
+		<!--<label>电&nbsp;&nbsp;&nbsp;话:</label>-->
+		<!--<input id="telephone" name="telephone" value="" />-->
+	<!--</div>-->
+	<div>
+		<label>开始时间:</label>
+		<input id="stime" type="date" name="stime" value="" />
+	</div>
+	<div>
+		<label>结束时间:</label>
+		<input id="etime" type="date"  name="etime" value="" />
+	</div>
+	<div>
+		<label>图片1:</label>
+		<input id="pic1" type="file"  name="tu1" value="" />
+	</div>
+	<div>
+		<label>图片2:</label>
+		<input id="pic2" type="file"  name="tu2" value="" />
+	</div>
+	<div>
+		<label>图片3:</label>
+		<input id="pic3" type="file"  name="tu3" value="" />
+	</div>
+	<div>
+		<label>图片4:</label>
+		<input id="pic4" type="file"  name="tu4" value="" />
+	</div>
+	<div>
+		<label>内容:</label>
+		<textarea id="content1" name="content"></textarea>
+
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script src="/statics/admin/js/car/ad.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	adAdd(function() {
+		var carname1 = $.trim($("#carname1").val());
+		if (carname1 == "") {
+			alert("车名不能为空");
+			return false;
+		}
+	}, function() {
+		$("#carname1").textbox({
+			width: "30%",
+			prompt: "请输入车名",
+			type: "text"
+		});
+		$('#storeid').combobox({
+			width: "30%",
+			prompt: "请输入店名",
+			type: "text"
+		});
+		$('#truename').textbox({
+			width: "30%",
+			prompt: "请输入优惠价格",
+			type: "text"
+		});
+        $('#cj_price').textbox({
+			width: "30%",
+			prompt: "请输入厂家指导价格",
+			type: "text"
+		});
+		$('#brand1').combobox({
+			width: "30%",
+			prompt: "请输入品牌",
+			type: "text"
+		});
+		$('#grade1').combobox({
+			width: "30%",
+			prompt: "请输入优惠价格",
+			type: "text"
+		});
+		$('#message').textbox({
+			width: "30%",
+			prompt: "请输入优惠信息",
+			type: "text"
+		});
+		$('#address').textbox({
+			width: "50%",
+			prompt: "请输入商家地址",
+			type: "text"
+		});
+		$('#telephone').textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "text"
+		});
+		$('#stime').textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "date"
+		});
+		$('#etime').textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "date"
+		});
+		$('#pic1').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是565 * 385的图片",
+			type: "text"
+		});
+		$('#pic2').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是565 * 385的图片",
+			type: "text"
+		});
+		$('#pic3').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是565 * 385的图片",
+			type: "text"
+		});
+		$('#pic4').filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是565 * 385的图片",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>
+<script type="text/javascript">
+	CKEDITOR.replace('content', {
+		toolbar: [
+			['Source'],
+			['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+			['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+			['BidiLtr', 'BidiRtl'],
+			'/', ['Bold', 'Italic', 'Underline', 'Strike'],
+			['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote', 'CreateDiv'],
+			['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+			['Link', 'Unlink', 'Anchor'],
+			['Image', 'SpecialChar', 'Table'],
+			'/', ['Styles', 'Format', 'Font', 'FontSize'],
+			['TextColor', 'BGColor'],
+			['Maximize', 'ShowBlocks']
+		]
+	});
+</script>

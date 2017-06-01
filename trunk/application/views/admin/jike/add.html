@@ -1,0 +1,62 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<div>
+		<label>姓&nbsp;&nbsp;&nbsp;名:</label>
+		<input id="username1" name="username" value="" />
+	</div>
+	<div>
+		<label>手机号:</label>
+		<input id="telephone1" name="telephone" value="" />
+	</div>
+	<div>
+		<label>车型ID:</label>
+		<input id="carid" name="carid" value="" />
+	</div>
+	<div>
+		<label>活动ID:</label>
+		<input id="huddleid" name="huddleid" value="" />
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script src="/statics/admin/js/jike/ad.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	adAdd(function() {
+		var telephone1 = $.trim($("#telephone1").val());
+		var username1 = $.trim($("#username1").val());
+		if (telephone1 == "") {
+			alert("手机号不能为空");
+			return false;
+		}
+		if (username == "") {
+			alert("姓名不能为空");
+			return false;
+		}
+	}, function() {
+		$("#username1").textbox({
+			width: "30%",
+			prompt: "请输入姓名",
+			type: "text"
+		});
+		$("#telephone1").textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "text"
+		});
+		$("#carid").textbox({
+			width: "30%",
+			prompt: "请输入车型ID",
+			type: "text"
+		});
+		$("#huddleid").textbox({
+			width: "30%",
+			prompt: "请输入活动ID",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>

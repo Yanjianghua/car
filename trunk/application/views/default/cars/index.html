@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		<meta http-equiv="Cache-Control" content="no-transform">
+		<meta name="mobile-agent" content="format=html5;url={{getServer('REMOTE_HOST')}}">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="{{if $cars.rows.0.store}}{{$cars.rows.0.store}}{{else}}{{$car.rows.0.carname}}{{/if}}">
+		<meta name="description" content="{{if $cars.rows.0.message}}{{ $cars.rows.0.message}}{{else}}{{cut_str(strip_tags( $cars.rows.0.message), 250)}}{{/if}}" />
+		<title>{{$web_name}}</title>
+		{{include file='../common/importAll.html'}} {{if !isset($addata)}}
+		<script type="text/javascript" id="ad" data-url="{{formatUrl('domain')}}{{formatUrl('home')}}" data-uid="{{$cars.rows.0.id}}" data-typeid="1" src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/js/ad.js?v={{config_item('system_version')}}"></script>
+		{{/if}}
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/un-index.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/ny.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/index_1.css" />
+		<script type="text/javascript" src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/js/hdslide.js" ></script>
+
+	</head>
+
+	<body>
+		{{include file='../common/header.html'}}
+        <div id="min">
+
+        <div class="sg-m-3 sg-w-1">
+        <div class="topcont">
+            <dl>
+                <dt>{{$cars.rows.0.store}}</dt>
+                <dt>浏览次数<i>{{$cars.rows.0.snum}}</i></dt>
+                <dt>最近编辑<i>{{$cars.rows.0.edittime}}</i></dt>
+            </dl>
+            <span>{{$cars.rows.0.telephone}}</span>
+        </div>
+
+        <div class="sg-m-3">
+            <!--组图-->
+            <div id="slidepic" class="fl">
+                <div id="bigpicbox">
+                    <ul>
+                        <li style="display: block;"><img src="{{if $cars.rows.0.tu1}}{{$cars.rows.0.tu1}}{{else}}暂无图片{{/if}}" height="385px" width="565px"  /> </li>
+                        <li style="display: none;"><img src="{{if $cars.rows.0.tu2}}{{$cars.rows.0.tu2}}{{else}}暂无图片{{/if}}"  height="385px" width="565px"/> </li>
+                        <li style="display: none;"><img src="{{if $cars.rows.0.tu3}}{{$cars.rows.0.tu3}}{{else}}暂无图片{{/if}}"  height="385px" width="565px"/> </li>
+                        <li style="display: none;"><img src="{{if $cars.rows.0.tu4}}{{$cars.rows.0.tu4}}{{else}}暂无图片{{/if}}"  height="385px" width="565px"/> </li>
+                    </ul>
+                </div>
+
+                <div id="spicbox" class="spicbox" >
+                    <ul>
+                        <li class="select5"><img src="{{if $cars.rows.0.tu1}}{{$cars.rows.0.tu1}}{{else}}暂无图片{{/if}}" height="90px" width="135px" /> </li>
+                        <li><img src="{{if $cars.rows.0.tu2}}{{$cars.rows.0.tu2}}{{else}}暂无图片{{/if}}" height="90px" width="135px"/> </li>
+                        <li><img src="{{if $cars.rows.0.tu3}}{{$cars.rows.0.tu3}}{{else}}暂无图片{{/if}}" height="90px" width="135px"/> </li>
+                        <li><img src="{{if $cars.rows.0.tu4}}{{$cars.rows.0.tu4}}{{else}}暂无图片{{/if}}" height="90px" width="135px" /> </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div id="listpicbox" class="fl cont-div">
+                    <h3 id="h3-title">{{$cars.rows.0.carname}}</h3>
+                <label><i>特惠价</i><b>{{$cars.rows.0.price}}万</b> </label>
+                <label><i>优惠信息</i><em>{{$cars.rows.0.message}}</em> </label>
+                <label><i>特惠时间</i>{{date("Y年m月d日",$cars.rows.0.stime)}}~{{date("Y年m月d日",$cars.rows.0.etime)}}</label>
+						<span>
+							<dd>[我要看车]抱团看车活动,优惠信息免费通知我</dd>
+							<dd>参与人数:<em>{{$people}}</em></dd>
+							<button type="button" value="{{$cars.rows.0.id}}" id="nybut">立即申请</button>
+						</span>
+                <label><i>商家地址</i>{{$cars.rows.0.address}}</label>
+                <dl>
+                    <dt>{{$cars.rows.0.telephone}}</dt>
+                    <dd>免费资讯电话</dd>
+                </dl>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <script type="text/javascript">
+
+            var bDiv=document.getElementById("bigpicbox");
+            var bLi=bDiv.getElementsByTagName("li");
+
+            var sDiv=document.getElementById("spicbox");
+            var sLi=sDiv.getElementsByTagName("li");
+
+            for (var i=0;i<sLi.length;i++) {
+                sLi[i].index=i;
+
+                sLi[i].onmouseenter=function(){
+                    for (var m=0;m<sLi.length;m++) {
+                        sLi[m].className="";
+                        bLi[m].style.display="none";
+                    }
+                    this.className="select5";
+                    bLi[this.index].style.display="block";
+                }
+
+            }
+
+
+        </script>
+
+
+        <div class="content-div">
+            <h3>现代瑞纳2014款价格表</h3>
+            <table cellpadding="0" cellspacing="0" id="table-box">
+                <tr>
+                    <td width="350">车型</td>
+                    <td width="180">厂家指导价/万</td>
+                    <td width="180">优惠价格/万</td>
+                    <td width="180">裸车价格/万</td>
+                    <td width="180">参考总价/万</td>
+                    <td width="180">操作状态</td>
+                </tr>
+                {{if !empty($carprice)}}
+                {{foreach $carprice.rows as $v}}
+                <tr>
+                    <td><span>{{$v.carnamenum}}</span></td>
+                    <td>{{$v.cjprice}}</td>
+                    <td>{{$v.yhprice}}</td>
+                    <td>{{$v.lcprice}}</td>
+                    <td class="color-1">{{$v.ckprice}}</td>
+                    <td><button type="button" value="{{$cars.rows.0.id}}">免费预约</button></td>
+                </tr>
+                {{/foreach}}
+                {{/if}}
+
+            </table>
+        </div>
+
+        <div class="content-div">
+            <h3>车辆实拍图</h3>
+            <div class="imgbox">
+                {{$cars.rows.0.content}}
+            </div>
+        </div>
+
+        <div class="content-div">
+            <h3>商家指引地图</h3>
+            <div class="map-div ts-m-2">
+                <div style="width:1184px;height:545px;border:#ccc solid 1px;" id="dituContent"></div>
+            </div>
+        </div>
+        <style>
+            .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+            .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+        </style>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+        <script type="text/javascript">
+            //创建和初始化地图函数：
+            function initMap(){
+                createMap();//创建地图
+                setMapEvent();//设置地图事件
+                addMapControl();//向地图添加控件
+                addMarker();//向地图中添加marker
+            }
+
+            //创建地图函数：
+            function createMap(){
+                var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+                var point = new BMap.Point({{$cars.rows.0.point_left}},{{$cars.rows.0.point_right}});//定义一个中心点坐标
+                map.centerAndZoom(point,13);//设定地图的中心点和坐标并将地图显示在地图容器中
+                window.map = map;//将map变量存储在全局
+            }
+
+            //地图事件设置函数：
+            function setMapEvent(){
+                map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+                map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+                map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+                map.enableKeyboard();//启用键盘上下左右键移动地图
+            }
+
+            //地图控件添加函数：
+            function addMapControl(){
+                //向地图中添加缩放控件
+                var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_SMALL});
+                map.addControl(ctrl_nav);
+                //向地图中添加比例尺控件
+                var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+                map.addControl(ctrl_sca);
+            }
+
+            //标注点数组
+            var markerArr = [{title:"北京现代联现店",content:"我的备注",point:"113.586818|24.73971",isOpen:0,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+            ];
+            //创建marker
+            function addMarker(){
+                for(var i=0;i<markerArr.length;i++){
+                    var json = markerArr[i];
+                    var p0 = json.point.split("|")[0];
+                    var p1 = json.point.split("|")[1];
+                    var point = new BMap.Point(p0,p1);
+                    var iconImg = createIcon(json.icon);
+                    var marker = new BMap.Marker(point,{icon:iconImg});
+                    var iw = createInfoWindow(i);
+                    var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+                    marker.setLabel(label);
+                    map.addOverlay(marker);
+                    label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+                    });
+
+                    (function(){
+                        var index = i;
+                        var _iw = createInfoWindow(i);
+                        var _marker = marker;
+                        _marker.addEventListener("click",function(){
+                            this.openInfoWindow(_iw);
+                        });
+                        _iw.addEventListener("open",function(){
+                            _marker.getLabel().hide();
+                        })
+                        _iw.addEventListener("close",function(){
+                            _marker.getLabel().show();
+                        })
+                        label.addEventListener("click",function(){
+                            _marker.openInfoWindow(_iw);
+                        })
+                        if(!!json.isOpen){
+                            label.hide();
+                            _marker.openInfoWindow(_iw);
+                        }
+                    })()
+                }
+            }
+            //创建InfoWindow
+            function createInfoWindow(i){
+                var json = markerArr[i];
+                var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+                return iw;
+            }
+            //创建一个Icon
+            function createIcon(json){
+                var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+                return icon;
+            }
+
+            initMap();//创建和初始化地图
+        </script>
+        </div>
+        </div>
+		{{include file='../common/footer.html'}}
+		<div style="display: none;">
+			{{config_item('cnzz')}}
+		</div>
+        <div id="fromshow" class="shown" >
+            <div class="formbg"></div>
+            <div class="formdiv">
+                <form method="post" id="myform2">
+                    <h3 id="hu3">现代瑞纳2014款全系优惠8000</h3>
+                    <p>√参与活动折扣优惠 √额外礼包 √专属顾问提供购车指导</p>
+                    <label> <input type="text" name="username" value="" id="user1" placeholder="姓名" class="input1 bs-ico9" /><dd>请输入用户名</dd> </label>
+                    <label> <input type="hidden" id="huddles" name="huddleId" /><input type="text" name="telnum" value="" id="telnum" placeholder="手机号" class="input1 bs-ico10" /><dd>请输入手机号</dd> </label>
+                    <label> <input type="checkbox" checked="ture"/>我已阅读并同意<a href="#">《汽车交易条款》</a></label>
+                    <label><button type="button" value="" class="but1">立即提交</button></label>
+                    <span class="closefrom"></span>
+                </form>
+            </div>
+        </div>
+		<script type="text/javascript">
+			$.ajax({
+						url: '/cars/read_add_ajax/?id={{$cars.rows.0.id}}',
+						method: 'post',
+						dataType: 'json',
+						data: {},
+						success:function () {
+					}
+			});
+		</script>
+        <script type="text/javascript">
+            var NyBut=document.getElementById("nybut");
+            var H3Title=document.getElementById("h3-title");
+
+            var FromShow=document.getElementById("fromshow");
+            var FromH3=document.getElementById("fromh3");
+
+            var tBalebox=document.getElementById("table-box");
+            var tButtom=tBalebox.getElementsByTagName("button");
+            var tTdSpan=tBalebox.getElementsByTagName("span");
+//console.log(tTdSpan[0].innerText);
+            for (var j=0;j<tButtom.length;j++) {
+                tButtom[j].val=j;
+                tButtom[j].onclick=function(a){
+                    FromShow.style.display="block";
+                    $("#myform2 #huddles").val(a.target.value);
+                    $("#myform2 #hu3").html(tTdSpan[this.val].textContent);
+                }
+
+            }
+
+            NyBut.onclick=function(){
+                FromShow.style.display="block";
+                FromH3.innerHTML=H3Title.innerText;
+            }
+
+            $(function(){
+                var ok1=false;
+                var ok2=false;
+                var tnum=/^1[34578]\d{9}$/;
+                // 验证用户名
+                $('input[name="username"]').focus(function(){
+                    $(this).next().text('姓名应为2个字符以上').removeClass('dd4').addClass('dd3');
+                }).blur(function(){
+                    if($(this).val().length >= 2 && $(this).val().length <=12 && $(this).val()!=''){
+                        $(this).next().text('输入正确').removeClass('dd3').addClass('dd2');
+                        ok1=true;
+                    }else{
+                        $(this).next().text('请输入姓名').removeClass('dd2').addClass('dd3');
+                    }
+
+                });
+
+
+                //验证电话
+                $('input[name="telnum"]').focus(function(){
+                    $(this).next().text('请输入正确的电话号码').removeClass('dd4').addClass('dd3');
+                }).blur(function(){
+                    if($(this).val().search(tnum)){
+                        $(this).next().text('请输入正确的电话号码').removeClass('dd2').addClass('dd3');
+
+                    }else{
+                        $(this).next().text('输入正确').removeClass('dd3')
+                        ok2=true;
+
+                    }
+
+                });
+
+                $("#fromshow").hide();
+                $(".closefrom").click(function(){
+                    $("#fromshow").hide();
+                });
+
+                $('.but1').click(function(){
+                    if((ok1==true) &&(ok2==true)){
+                        $("#fromshow").hide(function(){
+                            $("#fromshow #myform2")[0].reset();
+                        });
+                        $.ajax({
+                            url: '/huddle/jike',
+                            method: 'post',
+                            dataType: 'json',
+                            data: {
+                                username:$("#user1").val(),
+                                telephone:$("#telnum").val(),
+                                carid:$("#huddles").val()
+                            },
+                            success:function (data) {
+                            }
+                        });
+
+                    }else{
+                        return false;
+                    }
+                });
+            })
+        </script>
+	</body>
+
+</html>

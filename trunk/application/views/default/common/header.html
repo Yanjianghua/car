@@ -1,0 +1,108 @@
+<!--头部-->
+<div id="heads">
+	<div class="sg-m-1 sg-w-1 ts-p-2">
+		<a href="#" title="韶关家园汽车频道" class="fl"><img src="/statics/images/logo.png" /> </a>
+		<div class="search fl">
+			<!--搜索-->
+			<form name="myform1" method="get" action="/search" id="myform1">
+				<input type="text" name="carname" placeholder="请输入搜索关键词" value=""  />
+				<button type="submit" value="">搜 索</button>
+			</form>
+			<div class="clear"></div>
+					<span class="keyspan">
+						{{if !empty($index_re)}}
+						{{foreach $index_re.rows as $v}}
+						<a href="{{$v.url}}">{{$v.title}}</a>
+						{{/foreach}}
+						{{/if}}
+					</span>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!--导航-->
+	<div id="nav-div" class="border-1">
+		<div class="sg-m-1 sg-w-1 ">
+			<div class="catenav fl">
+				<span>家园汽车</span>
+			</div>
+			<div class="nav fl">
+				<ul>
+					<li><a href="/">汽车首页</a></li>
+					<li><a href="/car">特惠车型</a></li>
+					<li><a href="/huddle">报团看车</a></li>
+					<li><a href="/channel">汽车资讯</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<!--头部结束-->
+
+
+<!--主体-->
+<div id="main">
+
+	<!--焦点图-->
+	<div id="focusbox">
+		<div class="piclist" id="picbox">
+			<ul>
+				{{if !empty($index_lunzhuan)}}
+				{{foreach $index_lunzhuan.rows as $k=>$v}}
+				{{if $k == 1}}
+				<li style="display: block;"><a href="{{$v.url}}"><img src="{{$v.t1}}" /></a></li>
+				{{else}}
+				<li style="display: none;"><a href="{{$v.url}}"><img src="{{$v.t1}}" /></a></li>
+				{{/if}}
+				{{/foreach}}
+				{{/if}}
+
+			</ul>
+		</div>
+		<div class=" sg-m-1 sg-w-1 sg-position-1">
+			<div class="navlist" id="inputbox">
+
+				<label>
+					<form name="myform1" method="get" action="/search" id="myform2">
+					<input type="text" name="carname" placeholder="快速找车" value=""/>
+					<button type="submit" value="">查找</button>
+					</form>
+				</label>
+				<div class="lm-div">
+					<h3 class="h3-1 ts-m-2">品牌</h3>
+					{{if !empty($brand)}}
+					{{foreach $brand.rows as $v}}
+					<a href="/search?brand={{$v.id}}">{{$v.name}}</a>
+					{{/foreach}}
+					{{/if}}
+				</div>
+				<div class="lm-div border-3">
+					<h3 class="h3-1 ts-m-2">价格</h3>
+					{{if !empty($price)}}
+					{{foreach $price.rows as $v}}
+					<a href="/search?price={{$v.name}}">{{$v.name}}万</a>
+					{{/foreach}}
+					{{/if}}
+
+				</div>
+				<div class="lm-div border-3">
+					<h3 class="h3-1 ts-m-2">级别</h3>
+					{{if !empty($grade)}}
+					{{foreach $grade.rows as $v}}
+					<a href="/search?grade={{$v.id}}">{{$v.name}}</a>
+					{{/foreach}}
+					{{/if}}
+				</div>
+			</div>
+			<div id="tab-1">
+				<ul>
+					<li class="select1"></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>

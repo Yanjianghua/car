@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta charset="utf-8">
+		<title>{{$web_name}}</title>
+		{{include file='../common/importAll.html'}}
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/css/comm.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/css/index.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/css/swiper.min.css" />
+	</head>
+
+	<body class="wap-bg-1">
+	<header class="wap-bg-4 wap-pst-r" id="listheader">
+		<h3 class="wap-fnts-2">抱团看车</h3>
+		<a href="#" class="list-top-a1"  id="check"><img src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/images/fkico.png" /></a>
+		<a href="" onClick="javascript:history.back(-1);"  class="list-top-a2"><img src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/{{config_item('style')}}/m/images/jtico.png"  /></a>
+	</header>
+	<div id="listnavbox" style="display: none;">
+		<div class="navlist1 wap-bg-2 wap-pad-1">
+			<ul class="listnav">
+				<li><a href="/m/">首页</a></li>
+				<li ><a href="/m/shop">商家推荐</a></li>
+				<li><a href="/m/car">特惠车型</a></li>
+				<li class="blue"><a href="/m/huddle">报团看车</a></li>
+			</ul>
+			<div class="listbox">
+				<h3 class="wap-fnts-1">品牌</h3>
+				<ul class="listnav">
+					<li class="blue"><a href="">不限</a></li>
+					{{if !empty($brand)}}
+					{{foreach $brand.rows as $v}}
+					<li><a href="/m/search?brand={{$v.id}}">{{$v.name}}</a></li>
+					{{/foreach}}
+					{{/if}}
+				</ul>
+			</div>
+			<div class="listbox">
+				<h3 class="wap-fnts-1">车型</h3>
+				<ul class="listnav">
+					<li class="blue"><a href="">不限</a></li>
+					{{if !empty($grade)}}
+					{{foreach $grade.rows as $v}}
+					<li><a href="/m/search?grade={{$v.id}}">{{$v.name}}</a></li>
+					{{/foreach}}
+					{{/if}}
+				</ul>
+			</div>
+			<div class="listbox">
+				<h3 class="wap-fnts-1">价格</h3>
+				<ul class="listnav">
+					<li class="blue"><a href="">不限</a></li>
+					{{if !empty($price)}}
+					{{foreach $price.rows as $v}}
+					<li><a href="/m/search?price={{$v.name}}">{{$v.name}}万</a></li>
+					{{/foreach}}
+					{{/if}}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var Abut=document.getElementById("check");
+		var ListNavBox=document.getElementById("listnavbox");
+		Abut.onclick=function(){
+			if(ListNavBox.style.display=="block"){
+				ListNavBox.style.display="none";
+			}else{
+				ListNavBox.style.display="block";
+			}
+
+		}
+	</script>
+	<!--报团看车-->
+	<section id="onsale-box" class="wap-bg-2 wap-marg-t-1">
+		<div class="text-list">
+			{{if !empty($list)}}
+			{{foreach $list.rows as $v}}
+			<div class="wap-list-div-2">
+				<a href="/m/baoming?huddleid={{$v.id}}">
+					<aside>
+						<img src="{{$v.t1}}" />
+					</aside>
+					<aside>
+						<h3>{{$v.bname}}</h3>
+						<p>时间：<i>{{$v.stime}}~{{$v.etime}}</i></p>
+						<b>参团人数:{{$v.people}}人</b>
+					</aside>
+				</a>
+			</div>
+			{{/foreach}}
+			{{/if}}
+		</div>
+	</section>
+	<section>
+		<div class="c_page">
+			{{if !empty($list)}}
+			{{$list.pages}}
+			{{/if}}
+		</div>
+	</section>
+		{{include file='../common/footer.html'}}
+	</body>
+
+</html>

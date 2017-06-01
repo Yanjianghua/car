@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{{$web_name}}</title>
+		{{include file='../common/importAll.html'}}
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/un-index.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/index_1.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/lm.css" />
+		<script type="text/javascript" src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/js/hdslide.js" ></script>
+
+	</head>
+
+	<body>
+		{{include file='../common/header.html'}}
+		<div class="clear"></div>
+		<!--主体-->
+		<div id="min">
+			<!--筛选-->
+			<div class="sg-m-1 sg-w-1">
+				<div class="sg-m-2 sg-border-1">
+					<div id="brand">
+						<span>品牌</span>
+						<ul>
+							<li class="select3"><a href="#">不限</a> </li>
+							{{if !empty($brand)}}
+							{{foreach $brand.rows as $v}}
+							<li ast="{{$v.id}}" ><a href="brand={{$v.id}}">{{$v.name}}</a></li>
+							{{/foreach}}
+							{{/if}}
+						</ul>
+
+					</div>
+
+					<div id="brand2" class="border-5">
+						<span>级别</span>
+						<ul>
+							<li class="select3"><a href="#">不限</a> </li>
+							{{if !empty($grade)}}
+							{{foreach $grade.rows as $v}}
+							<li ast="{{$v.id}}" ><a href="grade={{$v.id}}">{{$v.name}}</a></li>
+							{{/foreach}}
+							{{/if}}
+						</ul>
+					</div>
+
+					<div id="brand3" class="border-5">
+						<span>价格</span>
+						<ul>
+							<li class="select3"><a href="#">不限</a> </li>
+							{{if !empty($price)}}
+							{{foreach $price.rows as $v}}
+							<li ast="{{$v.name}}" ><a href="price={{$v.name}}">{{$v.name}}万元</a></li>
+							{{/foreach}}
+							{{/if}}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="sg-w-1 sg-m-1">
+				<div class="carstyle-div">
+					<h3>特惠车型</h3>
+					<dl>
+						<dt class="select4"><a href="#">默认排列</a> </dt>
+						<dt><a href="#">最新发布</a> </dt>
+						<dt><a href="#">最新价格</a> </dt>
+					</dl>
+				</div>
+
+				<div class="carlistbox">
+					<ul>
+						{{if !empty($list)}}
+						{{foreach $list.list.rows as $v}}
+						<li>
+							<a href="ny.html"><img src="{{$v.tu1}}" height="190px" width="285" /></a>
+							<span>
+								<h3><a href="{{formatUrl('cars','cars',$v.id)}}">{{$v.carname}}</a></h3>
+								<dl>
+									<dt class="bs-ico6">商家名称：{{$v.store}}</dt>
+									<dt class="bs-ico7">商家地址：{{$v.address}}</dt>
+									<dd class="bs-ico8">特惠时间：{{date('Y年M月d日',$v.stime)}}~{{date('Y年M月d日',$v.etime)}}</dd>
+								</dl>
+							</span>
+							<label>
+								<dl>
+									<dt>现价：￥{{$v.price}}万</dt>
+									<dt>厂家指导价:10.5万(含税)</dt>
+									<dd>{{$v.telephone}}</dd>
+								</dl>
+							</label>
+						</li>
+						{{/foreach}}
+						{{/if}}
+					</ul>
+
+				</div>
+
+				<div class="c_page">
+					{{$list.list.pages}}
+				</div>
+			</div>
+		</div>
+		{{include file='../common/footer.html'}}
+		<div style="display: none;">
+			{{config_item('cnzz')}}
+		</div>
+	</body>
+	<script>
+var ast = {
+	getbrand : null,//url中brand值
+	getgrade : null,//url中grade值
+	getprice : null,//url中price值
+	dombrand : null,
+	domgrade : null,
+	domprice : null,
+	init : function(){
+		ast.urlResolve();//获取url中三个参数
+		
+		ast.dombrand = $('#brand li');
+		ast.operateSelect(ast.dombrand,ast.getbrand);
+		ast.operateHref(ast.dombrand,'brand');
+		
+		ast.domgrade = $('#brand2 li');
+		ast.operateSelect(ast.domgrade,ast.getgrade);
+		ast.operateHref(ast.domgrade,'grade');
+
+		ast.domprice = $('#brand3 li');
+		ast.operateSelect(ast.domprice,ast.getprice);
+		ast.operateHref(ast.domprice,'price');
+	},
+	urlResolve : function(){
+		/*
+		以?分隔符，如果返回数组长度等于2，get[1]的数据类似brand=2&grade=13&price=0-5
+		再以&分隔符分隔参数，再分别用brand=、grade=、price=得到各自的url参数
+		*/
+		get = document.location.href.split('?');
+		if (get.length==2){
+			gets = get[1].split('&');
+			for (i=0;i<gets.length;i++){
+				tem = gets[i].split('brand=');
+				if (tem.length==2){ast.getbrand = tem[1];	continue;}
+				tem = gets[i].split('grade=');
+				if (tem.length==2){ast.getgrade = tem[1];	continue;}
+				tem = gets[i].split('price=');
+				if (tem.length==2){ast.getprice = tem[1];	continue;}
+			}
+		}
+	},
+	operateSelect : function(dom,urlattr){
+		/*
+		如果特定url参数不为空，比如brand=2，则首先清除不限的选中样式
+		再循环查找到li属性ast=urlattr，标记选中，结束循环
+		*/
+		if (urlattr!=null){
+			dom.first().removeClass('select3');
+			ast._urlattr = urlattr;
+			dom.each(function(){
+				if ($(this).attr('ast')==ast._urlattr){
+					$(this).addClass('select3');	return;
+				}
+			});
+		}
+	},
+	operateHref : function(dom,type){
+		/*
+		将三url参数保存到副本中，type枚举:'brand'、'grade'、'price'
+		当type='brand'表示操作<div id="brand">，此时ast._getbrand不取url中brand值，而取<li ast="2">中ast参数
+		type='grade'、type='price' 类推
+		
+		_getbrand如果为空返回‘?’，不为空返回'?brand='
+		href 不等于'?'且_getgrade不为空，则需要&拼接
+		最终得到相应href字符串
+		*/
+		ast._type = type;
+		dom.each(function() {
+			ast._getbrand = ast.getbrand;
+			ast._getgrade = ast.getgrade;
+			ast._getprice = ast.getprice;
+			
+			switch (ast._type){
+				case 'brand':
+					ast._getbrand = $(this).attr('ast');	break;
+				case 'grade':
+					ast._getgrade = $(this).attr('ast');	break;
+				case 'price':
+					ast._getprice = $(this).attr('ast');	break;
+			}
+			href = ast._getbrand==null ? '?' : '?brand=' + ast._getbrand;
+			href += ((href!='?' && ast._getgrade!=null) ? '&' : '') + (ast._getgrade==null ? '' : 'grade=' + ast._getgrade);
+			href += ((href!='?' && ast._getprice!=null) ? '&' : '') + (ast._getprice==null ? '' : 'price=' + ast._getprice);
+			$(this).children('a').attr('href',href);
+        });
+	}
+}
+$(function(){
+	ast.init();
+});
+	</script>
+
+</html>

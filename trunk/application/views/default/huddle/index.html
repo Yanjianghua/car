@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{{$web_name}}</title>
+		{{include file='../common/importAll.html'}}
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/un-index.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/index_1.css" />
+		<link rel="stylesheet" href="{{formatUrl('domain')}}{{formatUrl('home')}}statics/css/bt.css" />
+		<script type="text/javascript" src="{{formatUrl('domain')}}{{formatUrl('home')}}statics/js/hdslide.js" ></script>
+
+
+	</head>
+
+	<body>
+		{{include file='../common/header.html'}}
+		<div class="clear"></div>
+		<div id="min">
+			<div class="sg-w-1 sg-m-1">
+				<div id="navbox">
+					<span>
+					   <a href="/car">商家推荐</a>
+					   <a href="#" class="select6">报团看车</a>
+					   </span>
+				</div>
+				<div id="listpicbox">
+					<ul>
+						{{if !empty($list)}}
+						{{foreach $list.rows as $v}}
+						<li>
+							<span>
+								<h3><a href="#">{{$v.bname}}</a> </h3>
+								<label>{{$v.bxx}}
+								</label>
+								<i><button type="button" value="{{$v.id}}" >报名参加</button></i>
+								<dd class="bs-ico8">{{$v.stime}}~{{$v.etime}}<em>{{$v.people}}人已抢到优惠</em></dd>
+								<dt>{{$v.baddress}}</dt>
+								<b>{{$v.telephone}}</b>
+							</span>
+							<img src="{{$v.t1}}" />
+						</li>
+						{{/foreach}}
+						{{/if}}
+					</ul>
+				</div>
+				<div class="c_page">
+					{{$list.pages}}
+				</div>
+
+			</div>
+
+		</div>
+		{{include file='../common/footer.html'}}
+		<div style="display: none;">
+			{{config_item('cnzz')}}
+		</div>
+
+		<div id="fromshow" class="shown" >
+			<div class="formbg"></div>
+			<div class="formdiv">
+				<form method="post" id="myform2">
+					<h3 id="hu3">现代瑞纳2014款全系优惠8000</h3>
+					<p>√参与活动折扣优惠 √额外礼包 √专属顾问提供购车指导</p>
+					<label> <input type="text" name="username" value="" id="user1" placeholder="姓名" class="input1 bs-ico9" /><dd>请输入用户名</dd> </label>
+					<label> <input type="hidden" id="huddles" name="huddleId" /><input type="text" name="telnum" value="" id="telnum" placeholder="手机号" class="input1 bs-ico10" /><dd>请输入手机号</dd> </label>
+					<label> <input type="checkbox" checked="ture"/>我已阅读并同意<a href="#">《汽车交易条款》</a></label>
+					<label><button type="button" value="" class="but1">立即提交</button></label>
+					<span class="closefrom"></span>
+				</form>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			$(function(){
+				var ok1=false;
+				var ok2=false;
+				var tnum=/^1[34578]\d{9}$/;
+				// 验证用户名
+				$('input[name="username"]').focus(function(){
+					$(this).next().text('姓名应为2个字符以上').removeClass('dd4').addClass('dd3');
+				}).blur(function(){
+					if($(this).val().length >= 2 && $(this).val().length <= 12 && $(this).val()!=''){
+						$(this).next().text('输入正确').removeClass('dd3').addClass('dd2');
+						ok1=true;
+					}else{
+						$(this).next().text('请输入姓名').removeClass('dd2').addClass('dd3');
+					}
+
+				});
+
+
+				//验证电话
+				$('input[name="telnum"]').focus(function(){
+					$(this).next().text('请输入正确的电话号码').removeClass('dd4').addClass('dd3');
+				}).blur(function(){
+					if($(this).val().search(tnum)){
+						$(this).next().text('请输入正确的电话号码').removeClass('dd2').addClass('dd3');
+
+					}else{
+						$(this).next().text('输入正确').removeClass('dd3')
+						ok2=true;
+
+					}
+
+				});
+
+				$("#fromshow").hide();
+				$(".closefrom").click(function(){
+					$("#fromshow").hide();
+				});
+
+				$('.but1').click(function(){
+					if((ok1==true) &&(ok2==true)){
+						$("#fromshow").hide(function(){
+							$("#myform2")[0].reset();
+						});
+						$.ajax({
+							url: '/huddle/jike',
+							method: 'post',
+							dataType: 'json',
+							data: {
+								username:$("#user1").val(),
+								telephone:$("#telnum").val(),
+								huddleid:$("#huddles").val()
+							},
+							success:function (data) {
+							}
+						});
+
+					}else{
+						return false;
+					}
+				});
+			})
+		</script>
+		<script type="text/javascript">
+			var fromShows=document.getElementById("fromshow");
+			var listDiv=document.getElementById("listpicbox");
+			var listButton=listDiv.getElementsByTagName("button");
+			var listH3=document.getElementById("listpicbox").getElementsByTagName("h3");
+			var myFrom2=document.getElementById("myform2").getElementsByTagName("h3");
+
+			for (var n=0;n<listButton.length;n++) {
+				listButton[n].index=n;
+				listButton[n].onclick=function(a){
+					$("#myform2 #hu3").html(listH3[this.index].innerText);
+					fromShows.style.display="block";
+					$("#myform2 #huddles").val(a.target.value);
+				}
+
+			}
+		</script>
+
+	</body>
+
+</html>

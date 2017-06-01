@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		{{include file='../../common/importAll.html'}}
+	</head>
+
+	<body>
+		<div id="window"></div>
+		<div class="main">
+            <form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+                <div>
+                    <label>网站名称:</label>
+                    <input id="webname" name="webname" value="{{$web_name}}" />
+                </div>
+                <div>
+                    <label>网站网址:</label>
+                    <input id="wenurl" name="wenurl" value="{{$server_url}}" />
+                </div>
+                <div>
+                    <label>网站底部:</label>
+                    <input data-options="multiline:true"  id="footer" name="footer" value="{{$footer}}" />
+                </div>
+                <div>
+                    <div id="submit">提交</div>
+                </div>
+            </form>
+		</div>
+        <script type="text/javascript">
+            function adAdd(check, button) {
+                $('#form').form({
+                    url: "/Admin_Main/index/",
+                    onSubmit: function() {
+                        if(check() === false){
+                            return false;
+                        }
+                        $("#window").mask();
+                        return true;
+                    },
+                    success: function(data) {
+                        data = JSON.parse(data);
+                        if (!data.success) {
+                            alert(data.msg);
+                        } else {
+                            $("#data_table_body").datagrid("reload");
+                            $("#window").window("close");
+                        }
+                        $("#window").unmask();
+                    }
+                });
+                button();
+            }
+            adAdd(function() {
+                var webname = $.trim($("#webname").val());
+                var wenurl = $.trim($("#wenurl").val());
+                if (webname == "") {
+                    alert("网站名不能为空");
+                    return false;
+                }
+                if (wenurl == "") {
+                    alert("网址不能为空");
+                    return false;
+                }
+            }, function() {
+                $("#webname").textbox({
+                    width: "30%",
+                    prompt: "请输入网站名称",
+                    type: "text"
+                });
+                $("#wenurl").textbox({
+                    width: "30%",
+                    prompt: "请输入网站网址",
+                    type: "text"
+                });
+                $("#footer").textbox({
+                    width: "30%",
+                    height: "200px",
+                    prompt: "请输入网站footer",
+                    type: "text"
+                });
+                $("#submit").linkbutton({
+                    iconCls: 'icon-ok'
+                }).click(function() {
+                    $('#form').submit();
+                });
+            });
+        </script>
+	</body>
+
+</html>

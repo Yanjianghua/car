@@ -1,0 +1,69 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+    <input type="hidden"  name="carid" value="{{$carid}}" />
+	<div>
+		<label>车&nbsp;&nbsp;&nbsp;名:</label>
+		<input id="carnamenum1" name="carnamenum" value="" />
+	</div>
+	<div>
+		<label>厂家指导价格:</label>
+		<input id="cjprice" name="cjprice" value="" />
+	</div>
+    <div>
+        <label>优惠价格:</label>
+        <input id="yhprice" name="yhprice" value="" />
+    </div>
+    <div>
+        <label>裸车价格:</label>
+        <input id="lcprice" name="lcprice" value="" />
+    </div>
+    <div>
+        <label>参考价格:</label>
+        <input id="ckprice" name="ckprice" value="" />
+    </div>
+
+
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script src="/statics/admin/js/carprice/ad.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	adAdd(function() {
+		var carnamenum = $.trim($("#carnamenum1").val());
+		if (carnamenum == "") {
+			alert("车名不能为空");
+			return false;
+		}
+	}, function() {
+		$("#carnamenum1").textbox({
+			width: "30%",
+			prompt: "请输入车名",
+			type: "text"
+		});
+		$('#cjprice').textbox({
+			width: "30%",
+			prompt: "请输入厂家指导价格",
+			type: "text"
+		});
+		$('#yhprice').textbox({
+			width: "30%",
+			prompt: "请输入优惠价格",
+			type: "text"
+		});
+		$('#lcprice').textbox({
+			width: "30%",
+			prompt: "请输入裸车价格",
+			type: "text"
+		});
+		$('#ckprice').textbox({
+			width: "30%",
+			prompt: "请输入参考价格",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>

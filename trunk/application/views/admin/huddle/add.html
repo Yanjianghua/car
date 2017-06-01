@@ -1,0 +1,87 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+		<input id="carid" type="hidden" name="carid" value="{{$id}}" />
+	<div>
+		<label>抱团信息:</label>
+		<input id="bxx" name="bxx" value="" />
+	</div>
+	<!--<div>-->
+		<!--<label>抱团地址:</label>-->
+		<!--<input id="baddress" name="baddress" value="" />-->
+	<!--</div>-->
+	<div>
+		<label>开始时间:</label>
+		<input id="stime" name="stime" value="" />
+	</div>
+	<div>
+		<label>结束时间:</label>
+		<input id="etime" name="etime" value="" />
+	</div>
+	<div>
+		<label>右&nbsp;&nbsp;&nbsp;图:</label>
+		<input id="t1" type="file" name="t1" value="" />
+	</div>
+	<div>
+		<label>电&nbsp;&nbsp;&nbsp;话:</label>
+		<input id="telephone" name="telephone" value="" />
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script src="/statics/admin/js/huddle/ad.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	adAdd(function() {
+		var truename = $.trim($("#truename").val());
+		var username = $.trim($("#username").val());
+		var password = $.trim($("#password").val());
+//		if (truename == "") {
+//			alert("优惠价格不能为空");
+//			return false;
+//		}
+//		if (username == "") {
+//			alert("店名不能为空");
+//			return false;
+//		}
+	}, function() {
+		$("#carname").textbox({
+			width: "40%",
+			prompt: "请输入车辆信息",
+			type: "text"
+		});
+		$("#bxx").textbox({
+			width: "60%",
+			prompt: "请输入车辆信息",
+			type: "text"
+		});
+		$("#baddress").textbox({
+			width: "60%",
+			prompt: "请输入地址",
+			type: "text"
+		});
+		$("#stime").textbox({
+			width: "30%",
+			prompt: "请输入开始时间",
+			type: "date"
+		});
+		$("#etime").textbox({
+			width: "30%",
+			prompt: "请输入结束时间",
+			type: "date"
+		});
+		$("#t1").filebox({
+			width: "50%",
+			prompt: "请输入选择上传图片,最好是600 * 300的图片",
+			type: "text"
+		});
+		$('#telephone').textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>

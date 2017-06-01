@@ -1,0 +1,26 @@
+.podiv{color: #333;}
+.podiv a{color: #333;padding: 0px 10px;font-size: 16px;}
+
+.zx-div a{display: block;border-bottom:1px solid #ccc;padding: 35px 0;height: 200px;color: #333;}
+.zx-div a img{ float: left;display: inline-block; width: 325px;height: 200px;}
+.zx-div a div{float: left;width: 530px;padding: 0px 10px 0px 30px;}
+.zx-div a div dd{font-size: 22px; display: block;margin-bottom: 10px;}
+.zx-div a div p,.zx-div a div dt{font-size: 14px;color: #666;line-height: 30px;}
+.zx-div a div p{padding: 15px 0;}
+.zx-div a:hover{background: #fbfbfb;transition:  background-color  0.5s ease-in;   -webkit-transition:all 0.5s ease-in;-moz-transition: all 0.5s ease-in;box-shadow: 2px 2px 15px #ccc;}
+.recommend-div{width: 260px;}
+.recommend-div .recommend-cont{padding: 15px 10px 15px 10px;}
+.recommend-div .recommend-cont h3{font-size: 16px;display: block;margin-bottom: 10px;}
+.recommend-div .recommend-cont a{display: block;border-bottom:1px dashed #ccc;height: 75px;color: #333;padding: 20px 0;}
+.recommend-div .recommend-cont a img{ float: left;display: inline-block; width: 120px;height: 75px;}
+.recommend-div .recommend-cont a dl{float: left;display: block;width: 105px;margin-left: 10px;font-size: 14px;line-height: 25px;}
+.recommend-div .recommend-cont a dl dd{color: #666;}
+.recommend-div .recommend-cont a dl dd em{color: #FF6600;}
+.recommend-div .recommend-cont a:hover{background: #fbfbfb;}
+
+
+.cont-title h3{display: block; text-align: center;font-size: 26px;color: #000;}
+.cont-title dl{text-align: center;}
+.cont-title dl dd{display: inline-block;padding:10px 5px;color: #666;font-size: 14px;}
+.content {line-height: 25px;color: #333; text-indent: 30px;}
+.content img{display: block;width: 620px;height: 465px; overflow: hidden;margin: 20px auto;}

@@ -1,0 +1,67 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<div>
+		<label>店&nbsp;&nbsp;&nbsp;名:</label>
+		<input id="storename1" name="storename" value="" />
+	</div>
+	<div>
+		<label>商家住址:</label>
+		<input id="address" name="address" value="" />
+	</div>
+	<div>
+		<label>电&nbsp;&nbsp;&nbsp;话:</label>
+		<input id="telephone" name="telephone" value="" />
+	</div>
+	<div>
+		<label>经度:</label>
+		<input id="point_left"  name="point_left" value="" />
+	</div>
+	<div>
+		<label>纬度:</label>
+		<input id="point_right"  name="point_right" value="" />
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script src="/statics/admin/js/store/ad.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	adAdd(function() {
+		var storename = $.trim($("#storename1").val());
+		if (storename == "") {
+			alert("店名不能为空");
+			return false;
+		}
+	}, function() {
+		$('#storename1').textbox({
+			width: "30%",
+			prompt: "请输入店名",
+			type: "text"
+		});
+
+		$('#address').textbox({
+			width: "50%",
+			prompt: "请输入商家地址",
+			type: "text"
+		});
+		$('#telephone').textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "text"
+		});
+		$('#point_left').textbox({
+			width: "30%",
+			prompt: "请输入经度",
+			type: "text"
+		});
+		$('#point_right').textbox({
+			width: "30%",
+			prompt: "请输入纬度",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>

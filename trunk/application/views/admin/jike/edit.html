@@ -1,0 +1,85 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<input type="hidden" name="id" value="{{$id}}" />
+	<div>
+		<label>姓&nbsp;&nbsp;&nbsp;名:</label>
+		<input id="username1" name="username" value="{{$jike.username}}" />
+	</div>
+	<div>
+		<label>手机号:</label>
+		<input id="telephone1" name="telephone" value="{{$jike.telephone}}" />
+	</div>
+	<div>
+		<label>车型ID:</label>
+		<input id="carid" name="carid" value="{{$jike.carid}}" />
+	</div>
+	<div>
+		<label>活动ID:</label>
+		<input id="huddleid" name="huddleid" value="{{$jike.huddleid}}" />
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script type="text/javascript">
+	function adAdd(check, button) {
+		$('#form').form({
+			url: "/Admin_Jike/edit/",
+			onSubmit: function() {
+				if(check() === false){
+					return false;
+				}
+				$("#window").mask();
+				return true;
+			},
+			success: function(data) {
+				data = JSON.parse(data);
+				if (!data.success) {
+					alert(data.msg);
+				} else {
+					$("#data_table_body").datagrid("reload");
+					$("#window").window("close");
+				}
+				$("#window").unmask();
+			}
+		});
+		button();
+	}
+	adAdd(function() {
+		var telephone1 = $.trim($("#telephone1").val());
+		var username1 = $.trim($("#username1").val());
+		if (telephone1 == "") {
+			alert("手机号不能为空");
+			return false;
+		}
+		if (username == "") {
+			alert("姓名不能为空");
+			return false;
+		}
+	}, function() {
+		$("#username1").textbox({
+			width: "30%",
+			prompt: "请输入姓名",
+			type: "text"
+		});
+		$("#telephone1").textbox({
+			width: "30%",
+			prompt: "请输入手机号",
+			type: "text"
+		});
+		$("#carid").textbox({
+			width: "30%",
+			prompt: "请输入车型ID",
+			type: "text"
+		});
+		$("#huddleid").textbox({
+			width: "30%",
+			prompt: "请输入活动ID",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>

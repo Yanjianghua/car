@@ -1,0 +1,57 @@
+<form method="post" enctype="multipart/form-data" id="form" style="line-height: 40px; padding: 10px;">
+	<div>
+		<label>位&nbsp;&nbsp;&nbsp;置:</label>
+		<input id="wz" name="wz" value="" />
+	</div>
+	<div>
+		<label>标&nbsp;&nbsp;&nbsp;题:</label>
+		<input id="title11" name="title" value="" />
+	</div>
+	<div>
+		<label>链&nbsp;&nbsp;&nbsp;接:</label>
+		<input id="url" name="url" value="" />
+	</div>
+	<div>
+		<label>图&nbsp;&nbsp;&nbsp;片:</label>
+		<input id="t1" name="t1" value="" />
+	</div>
+	<div>
+		<div id="submit">提交</div>
+	</div>
+</form>
+<script src="/statics/admin/js/admin_recommand/ad.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	adAdd(function() {
+		var username = $.trim($("#title11").val());
+		if (username == "") {
+			alert("标题不能为空");
+			return false;
+		}
+	}, function() {
+		$("#wz").textbox({
+			width: "30%",
+			prompt: "请输入位置",
+			type: "text"
+		});
+		$("#title11").textbox({
+			width: "30%",
+			prompt: "请输入标题",
+			type: "text"
+		});
+		$("#url").textbox({
+			width: "30%",
+			prompt: "请输入链接地址",
+			type: "text"
+		});
+		$("#t1").filebox({
+			width: "50%",
+			prompt: "请输入图片",
+			type: "text"
+		});
+		$("#submit").linkbutton({
+			iconCls: 'icon-ok'
+		}).click(function() {
+			$('#form').submit();
+		});
+	});
+</script>
